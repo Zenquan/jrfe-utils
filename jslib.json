@@ -1,0 +1,11 @@
+{
+    "name": "jrfe-utils",
+    "npmname": "jrfe-utils",
+    "umdname": "jrfe-utils",
+    "username": "zenquan",
+    "type": "js",
+    "module": "umd,esm,commonjs",
+    "test": "mocha",
+    "lang": "zh",
+    "version": "1.6.0"
+}

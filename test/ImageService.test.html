@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../dist/index.aio.min.js"></script>
+
+  <script>
+    const { ImageService } = window['jrfe-utils'];
+    const imageService = new ImageService();
+    const getAvatar = async () => {
+      const avatarUrl =
+        'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg',
+        res1 = await imageService.getRemotePic(avatarUrl, 'avatar', 'base64'),
+        res2 = await imageService.getRemotePic(avatarUrl, 'avatar', 'img')
+      console.log('avatar>>>', res1, res2);
+      document.body.appendChild(res2)
+    }
+
+    getAvatar()
+
+  </script>
+</body>
+
+</html>
