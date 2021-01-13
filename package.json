@@ -18,7 +18,7 @@
     "build:aio.min": "cross-env NODE_ENV=production npm run build:aio",
     "build": "npm run clean && npm run build:self && npm run build:esm && npm run build:aio && npm run build:aio.min",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "docs": "npx jsdoc ./src"
+    "docs": "npx docsify start ."
   },
   "author": "zenquan",
   "license": "MIT",
