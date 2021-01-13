@@ -18,8 +18,10 @@
     "build:aio.min": "cross-env NODE_ENV=production npm run build:aio",
     "build": "npm run clean && npm run build:self && npm run build:esm && npm run build:aio && npm run build:aio.min",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "docs:build": "npx jsdoc2md",
-    "docs": "npx docsify start ."
+    "docs:jsdoc": "npx jsdoc src",
+    "docs:build": "npx jsdoc2md src/* >> FIXDOC.md && npm run docs:jsdoc && npx vuepress build docs",
+    "docs:dev": "npx vuepress dev docs",
+    "docs": "npm run docs:build"
   },
   "author": "zenquan",
   "license": "MIT",
@@ -60,7 +62,8 @@
     "rollup-plugin-commonjs": "8.3.0",
     "rollup-plugin-node-resolve": "3.0.3",
     "rollup-plugin-uglify": "1.0.0",
-    "source-map-support": "0.5.9"
+    "source-map-support": "0.5.9",
+    "vuepress": "^1.8.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2"

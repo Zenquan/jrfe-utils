@@ -7,3 +7,9 @@ export {
   DanmuService,
   ArrayFn
 };
+
+export default {
+  ImageService,
+  DanmuService,
+  ArrayFn
+};

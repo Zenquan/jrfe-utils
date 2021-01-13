@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {DanmuService} from "@jomsou/utils";
+import JrfeUtils from "../../../../../dist/index.esm";
 
 export default {
   data() {
@@ -18,6 +18,8 @@ export default {
     }
   },
   mounted() {
+    // console.log('JrfeUtils>>>', DanmuService, JrfeUtils.DanmuService);
+    const { DanmuService } = JrfeUtils;
     setTimeout(() => {
       this.$nextTick(() => {
         this.danmaku = new DanmuService(this.$refs.danmaku, this.danmakuData, {

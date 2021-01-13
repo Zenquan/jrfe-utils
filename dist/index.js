@@ -225,7 +225,7 @@ var defaultOption = {
 var dep = {};
 /**
  * @author Zenquan
- * @type 作用：弹幕/走马灯服务
+ * @description 作用：弹幕/走马灯服务
  * @date 2021/01/13
  */
 
@@ -602,6 +602,13 @@ var ArrayFn = /*#__PURE__*/function () {
   return ArrayFn;
 }();
 
+var index = {
+  ImageService: ImageService,
+  DanmuService: DanmuService,
+  ArrayFn: ArrayFn
+};
+
 exports.ImageService = ImageService;
 exports.DanmuService = DanmuService;
 exports.ArrayFn = ArrayFn;
+exports.default = index;
