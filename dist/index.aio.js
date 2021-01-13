@@ -402,8 +402,211 @@
     return DanmuService;
   }();
 
+  /**
+   * @author Zenquan
+   * @description 作用：数组扩展方法
+   * @field 2021/01/13
+   */
+  var ArrayFn = /*#__PURE__*/function () {
+    function ArrayFn() {
+      _classCallCheck(this, ArrayFn);
+    }
+
+    _createClass(ArrayFn, [{
+      key: "contains",
+
+      /*判断一个元素是否在数组中*/
+      value: function contains(arr, val) {
+        return arr.indexOf(val) != -1 ? true : false;
+      }
+      /**
+       * @param  {arr} 数组
+       * @param  {fn} 回调函数
+       * @return {undefined}
+       */
+
+    }, {
+      key: "each",
+      value: function each(arr, fn) {
+        fn = fn || Function;
+        var args = Array.prototype.slice.call(arguments, 1);
+
+        for (var i = 0; i < arr.length; i++) {
+          var res = fn.apply(arr, [arr[i], i].concat(args));
+        }
+      }
+      /**
+       * @param  {arr} 数组
+       * @param  {fn} 回调函数
+       * @param  {thisObj} this指向
+       * @return {Array} 
+       */
+
+    }, {
+      key: "map",
+      value: function map(arr, fn, thisObj) {
+        var scope = thisObj || window;
+        var a = [];
+
+        for (var i = 0, j = arr.length; i < j; ++i) {
+          var res = fn.call(scope, arr[i], i, this);
+          if (res != null) a.push(res);
+        }
+
+        return a;
+      }
+      /**
+       * @param  {arr} 数组
+       * @param  {type} 1：从小到大   2：从大到小   3：随机
+       * @return {Array}
+       */
+
+    }, {
+      key: "sort",
+      value: function sort(arr) {
+        var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+        return arr.sort(function (a, b) {
+          switch (type) {
+            case 1:
+              return a - b;
+
+            case 2:
+              return b - a;
+
+            case 3:
+              return Math.random() - 0.5;
+
+            default:
+              return arr;
+          }
+        });
+      }
+      /*去重*/
+
+    }, {
+      key: "unique",
+      value: function unique(arr) {
+        if (Array.hasOwnProperty('from')) {
+          return Array.from(new Set(arr));
+        } else {
+          var n = {},
+              r = [];
+
+          for (var i = 0; i < arr.length; i++) {
+            if (!n[arr[i]]) {
+              n[arr[i]] = true;
+              r.push(arr[i]);
+            }
+          }
+
+          return r;
+        } // 注：上面 else 里面的排重并不能区分 2 和 '2'，但能减少用indexOf带来的性能
+
+        /* 正确排重
+        if ( Array.hasOwnProperty('from') ) {
+            return Array.from(new Set(arr))
+        }else{
+            var r = [], NaNBol = true
+            for(var i=0; i < arr.length; i++) {
+                if (arr[i] !== arr[i]) {
+                    if (NaNBol && r.indexOf(arr[i]) === -1) {
+                        r.push(arr[i])
+                        NaNBol = false
+                    }
+                }else{
+                    if(r.indexOf(arr[i]) === -1) r.push(arr[i])
+                }
+            }
+            return r
+        }
+          */
+
+      }
+      /*求两个集合的并集*/
+
+    }, {
+      key: "union",
+      value: function union(a, b) {
+        var newArr = a.concat(b);
+        return this.unique(newArr);
+      }
+      /*求两个集合的交集*/
+
+    }, {
+      key: "intersect",
+      value: function intersect(a, b) {
+        var _this = this;
+
+        a = this.unique(a);
+        return this.map(a, function (o) {
+          return _this.contains(b, o) ? o : null;
+        });
+      }
+      /*删除其中一个元素*/
+
+    }, {
+      key: "remove",
+      value: function remove(arr, ele) {
+        var index = arr.indexOf(ele);
+
+        if (index > -1) {
+          arr.splice(index, 1);
+        }
+
+        return arr;
+      }
+      /*将类数组转换为数组的方法*/
+
+    }, {
+      key: "formArray",
+      value: function formArray(ary) {
+        var arr = [];
+
+        if (Array.isArray(ary)) {
+          arr = ary;
+        } else {
+          arr = Array.prototype.slice.call(ary);
+        }
+        return arr;
+      }
+      /*最大值*/
+
+    }, {
+      key: "max",
+      value: function max(arr) {
+        return Math.max.apply(null, arr);
+      }
+      /*最小值*/
+
+    }, {
+      key: "min",
+      value: function min(arr) {
+        return Math.min.apply(null, arr);
+      }
+      /*求和*/
+
+    }, {
+      key: "sum",
+      value: function sum(arr) {
+        return arr.reduce(function (pre, cur) {
+          return pre + cur;
+        });
+      }
+      /*平均值*/
+
+    }, {
+      key: "average",
+      value: function average(arr) {
+        return this.sum(arr) / arr.length;
+      }
+    }]);
+
+    return ArrayFn;
+  }();
+
   exports.ImageService = ImageService;
   exports.DanmuService = DanmuService;
+  exports.ArrayFn = ArrayFn;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
