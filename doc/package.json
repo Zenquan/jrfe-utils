@@ -1,0 +1,14 @@
+{
+  "name": "doc",
+  "version": "1.0.0",
+  "description": "> 悦跑h5小分队工具",
+  "main": "index.js",
+  "scripts": {
+    "docs": "npx docsify start ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "docsify": "^4.11.6"
+  }
+}
