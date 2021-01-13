@@ -8,7 +8,7 @@ let dep = {};
 
 /**
  * @author Zenquan
- * @type 作用：弹幕/走马灯服务
+ * @description 作用：弹幕/走马灯服务
  * @date 2021/01/13
  */
 class DanmuService {

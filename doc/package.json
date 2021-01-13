@@ -4,11 +4,13 @@
   "description": "> 悦跑h5小分队工具",
   "main": "index.js",
   "scripts": {
-    "docs": "npx docsify start ."
+    "docs:build": "npx jsdoc2md ../src/* >> README.md",
+    "docs": "npm run docs:build && npx docsify start ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "docsify": "^4.11.6"
+    "docsify": "^4.11.6",
+    "jsdoc-to-markdown": "^6.0.1"
   }
 }

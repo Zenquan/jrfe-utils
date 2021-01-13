@@ -18,6 +18,7 @@
     "build:aio.min": "cross-env NODE_ENV=production npm run build:aio",
     "build": "npm run clean && npm run build:self && npm run build:esm && npm run build:aio && npm run build:aio.min",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "docs:build": "npx jsdoc2md",
     "docs": "npx docsify start ."
   },
   "author": "zenquan",
@@ -50,6 +51,7 @@
     "eslint": "^5.15.1",
     "expect.js": "0.3.1",
     "jsdoc": "^3.6.6",
+    "jsdoc-to-markdown": "^6.0.1",
     "mocha": "3.5.3",
     "nyc": "13.1.0",
     "rimraf": "2.6.2",

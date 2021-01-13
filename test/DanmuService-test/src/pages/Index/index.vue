@@ -7,48 +7,70 @@
 </template>
 <script>
 import Danmaku from "./danmaku.vue";
-import {
-  getPopUpList
-} from 'services/activity'
 const assetsPath = process.env.assetsPath;
 export default {
   data () {
     return {
-      danmuData: [],
+      danmuData: [
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-1.png`,
+          title: "妈妈，谢谢你教会我走路"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-2.png`,
+          title: "妈妈做的排骨是最好吃的菜"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-3.png`,
+          title: "妈妈我要带你完成一场马拉松赛"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-4.png`,
+          title: "妈妈你在马拉松终点等我一次吧"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-5.png`,
+          title: "我要用悦跑圈跑出妈妈的名字"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-6.png`,
+          title: "我想在母亲节当天拥抱妈妈"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-7.png`,
+          title: "你的白发见证了我的成长，妈妈我爱你"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-8.png`,
+          title: "妈妈谢谢你让我来到这个世界上"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-9.png`,
+          title: "有妈妈的晚餐才有家的归属感"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-10.png`,
+          title: "妈妈给我留的灯指引着我归家的路"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-11.png`,
+          title: "爱在心底不善言辞，妈妈我爱你"
+        },
+        {
+          faceUrl: `${this.$assetsPath}/img/avatar-12.png`,
+          title: "妈妈我要把马拉松奖牌都刻上你的名字"
+        }
+      ],
     }
   },
   props: {
   },
   methods: {
-    async getPopUpList () {
-      const popList = await getPopUpList();
-      this.danmuData = popList.map(pop => {
-        return {
-          title: `
-            <div class='danma'>
-              用户&nbsp;<p class='user-name ellipse'>${pop.userName}</p>&nbsp;获得赠品&nbsp;
-              <p class="speci-txt ellipse">${pop.commodityName}</p>
-            </div>
-          `,
-          faceUrl: pop.faceUrl
-        }
-      })
-    },
-    goToRank () {
-      if (!this.isShowGo) {
-        Toast('快选购心仪的商品吧，排行榜马上公布')
-        return
-      }
-      this.$router.push("/rank");
-    }
   },
   computed: {
   },
   components: {
     Danmaku
-  },
-  created() {
-    this.getPopUpList();
   },
   mounted() {
   },

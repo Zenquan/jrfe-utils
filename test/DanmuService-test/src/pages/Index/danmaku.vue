@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Danmaku from "utils/danmaku";
+import {DanmuService} from "@jomsou/utils";
 
 export default {
   data() {
@@ -20,7 +20,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.$nextTick(() => {
-        this.danmaku = new Danmaku(this.$refs.danmaku, this.danmakuData, {
+        this.danmaku = new DanmuService(this.$refs.danmaku, this.danmakuData, {
           maxSpeed: 10,
           minSpeed: 5,
           spaceRatio: 0,

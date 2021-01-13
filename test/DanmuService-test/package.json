@@ -30,6 +30,7 @@
   ],
   "dependencies": {
     "@better-scroll/core": "^2.0.3",
+    "@jomsou/utils": "0.1.0-master.8666afc",
     "animated-scroll-to": "^2.0.12",
     "axios-jsonp": "^1.0.4",
     "babel-polyfill": "^6.26.0",

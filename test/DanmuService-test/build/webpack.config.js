@@ -61,42 +61,6 @@ module.exports = {
     // open: true,
     hot: true,
     proxy: {
-      '/api/activity': {
-        target: 'http://h5-activity.dubbox.test.thejoyrun.com',
-        pathRewrite: { '^/api/activity': '', },
-        secure: false,
-        changeOrigin: true,
-      },
-      '/api/user': {
-        target: 'http://user.dubbox.test.thejoyrun.com',
-        pathRewrite: { '^/api/user': '', },
-        secure: false,
-        changeOrigin: true,
-      },
-      '/api/sensitive': {
-        target: 'http://sensitive.dubbox.thejoyrun.com',
-        pathRewrite: { '^/api/sensitive': '', },
-        secure: false,
-        changeOrigin: true,
-      },
-      '/api/sync': {
-        target: 'https://activity-test.thejoyrun.com',
-        pathRewrite: { '^/api/sync': '', },
-        secure: false,
-        changeOrigin: true,
-      },
-      '/api_ec/': {
-        target: 'https://ec.thejoyrun.com',
-        pathRewrite: {'^/api_ec/': ''},
-        changeOrigin: true,
-        secure: false
-      },
-      '/api_ec_api/': {
-        target: 'https://ec.api.thejoyrun.com',
-        pathRewrite: { '^/api_ec_api/': '', },
-        secure: false,
-        changeOrigin: true,
-      }
     }
   },
 }
