@@ -115,8 +115,8 @@ class DanmuService {
   }
   /**
    * @description 作用：监听事件
-   * @param envet 事件
-   * @param fn 函数
+   * @param {envet} 事件
+   * @param {fn} 函数
   */
   on(event, fn) {
     dep[event] = fn;
@@ -126,7 +126,7 @@ class DanmuService {
   }
   /**
    * @description 作用：往后推入弹幕数据
-   * @param newdatas 弹幕数据
+   * @param {newdatas} 弹幕数据
   */
   appendData(newdatas) {
     this.data = newdatas;

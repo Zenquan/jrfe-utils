@@ -6,10 +6,10 @@
 class ImageService {
   /**
    * @description 作用：获取远程图片，解决例如html2canvas中跨域的问题
-   * @param url 远程图片的链接
-   * @param imgClass 获取到图片展示的样式
-   * @param type 'base64' | 'img' 决定返回值是url还是base64
-   * @return Promise<string>
+   * @param {url} 远程图片的链接
+   * @param {imgClass} 获取到图片展示的样式
+   * @param {type} 'base64' | 'img' 决定返回值是url还是base64
+   * @return {Promise}
    * 
    * @example 
    * ```js

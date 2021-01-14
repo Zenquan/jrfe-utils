@@ -1,5 +1,7 @@
-## 编辑文档
-使用`npm run docs:build`到FIXDOC.md里，再编辑一下合并到readme里。
+# 说明
+
+## 文档
+使用`npm run docs:build`生成文档到`docs/pages/folder1/api.md`。
 
 - 优点：
 1. 强迫写详细的注释

@@ -2,14 +2,33 @@
 
 > 悦跑h5小分队工具
 
-## 编辑文档
-使用`npm run docs:build`到FIXDOC.md里，再编辑一下合并到readme里。
+## 特性
 
-- 优点：
-1. 强迫写详细的注释
-2. 形成文档更加自动化
+- 可生成umd/esm等js文件
+- 自动部署到npm
+- 自动化生成文档
+- 自动化部署文档到vercel
+- 规范化git commit
 
-## 安装
+## PR
+
+- fork
+- contribute
+- npm run deploy
+- git push
+- merge
+
+**加功能时**
+- 开新分支 -> feature/A同学/V版本-B功能
+- 修改版本号 -> v0.1.0 -> v0.1.1
+
+**commit**
+- A: "添加一个新的功能模块"
+- M: "更新一个功能模块"
+- B: "构建静态资源"
+- F: "修复 X 页面的问题"
+
+## 使用
 
 ```bash
 npm i @jomsou/utils -S
@@ -37,3 +56,6 @@ const { xxx, ... } = JrfeUtils
 or 
 import { xxx } from '@jomsou/utils';
 ```
+
+## 更新日志
+[CHANGELOG.md](./CHANGELOG.md)

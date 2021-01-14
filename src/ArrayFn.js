@@ -4,45 +4,8 @@
  * @field 2021/01/13
  */
 class ArrayFn {
-  /*判断一个元素是否在数组中*/
-  contains(arr, val) {
-    return arr.indexOf(val) != -1 ? true : false;
-  }
-
-
   /**
-   * @param  {arr} 数组
-   * @param  {fn} 回调函数
-   * @return {undefined}
-   */
-  each(arr, fn) {
-    fn = fn || Function;
-    var a = [];
-    var args = Array.prototype.slice.call(arguments, 1);
-    for (var i = 0; i < arr.length; i++) {
-      var res = fn.apply(arr, [arr[i], i].concat(args));
-      if (res != null) a.push(res);
-    }
-  }
-
-  /**
-   * @param  {arr} 数组
-   * @param  {fn} 回调函数
-   * @param  {thisObj} this指向
-   * @return {Array} 
-   */
-  map(arr, fn, thisObj) {
-    var scope = thisObj || window;
-    var a = [];
-    for (var i = 0, j = arr.length; i < j; ++i) {
-      var res = fn.call(scope, arr[i], i, this);
-      if (res != null) a.push(res);
-    }
-    return a;
-  }
-
-
-  /**
+   * @description 作用：数组排序方法
    * @param  {arr} 数组
    * @param  {type} 1：从小到大   2：从大到小   3：随机
    * @return {Array}
@@ -62,7 +25,11 @@ class ArrayFn {
     })
   }
 
-  /*去重*/
+  /**
+   * @description 作用：数组去重方法
+   * @param  {arr} 数组
+   * @return {Array}
+   */
   unique(arr) {
     if (Array.hasOwnProperty('from')) {
       return Array.from(new Set(arr));
@@ -99,13 +66,23 @@ class ArrayFn {
      */
   }
 
-  /*求两个集合的并集*/
+  /**
+   * @description 作用：求两个集合的并集
+   * @param  {a} 数组
+   * @param  {b} 数组
+   * @return {Array}
+   */
   union(a, b) {
     var newArr = a.concat(b);
     return this.unique(newArr);
   }
 
-  /*求两个集合的交集*/
+  /**
+   * @description 作用：求两个集合的交集
+   * @param  {a} 数组
+   * @param  {b} 数组
+   * @return {Array}
+   */
   intersect(a, b) {
     var _this = this;
     a = this.unique(a);
@@ -114,7 +91,12 @@ class ArrayFn {
     });
   }
 
-  /*删除其中一个元素*/
+  /**
+   * @description 作用：删除其中一个元素
+   * @param  {arr} 数组
+   * @param  {ele} 删除的元素索引
+   * @return {Array}
+   */
   remove(arr, ele) {
     var index = arr.indexOf(ele);
     if (index > -1) {
@@ -123,7 +105,11 @@ class ArrayFn {
     return arr;
   }
 
-  /*将类数组转换为数组的方法*/
+  /**
+   * @description 作用：将类数组转换为数组的方法
+   * @param  {ary} 数组
+   * @return {Array}
+   */
   formArray(ary) {
     var arr = [];
     if (Array.isArray(ary)) {
@@ -134,26 +120,41 @@ class ArrayFn {
     return arr;
   }
 
-  /*最大值*/
+  /**
+   * @description 作用：求数组最大值，仅适合数字数组
+   * @param  {ary} 数组
+   * @return {number} 
+   */
   max(arr) {
     return Math.max.apply(null, arr);
   }
 
-  /*最小值*/
+  /**
+   * @description 作用：求数组最小值，仅适合数字数组, 否则返回NaN
+   * @param  {ary} 数组
+   * @return {number} 
+   */
   min(arr) {
     return Math.min.apply(null, arr);
   }
 
-  /*求和*/
+  /**
+  * @description 作用：求数组和，仅适合数字数组, 否则返回NaN
+  * @param  {ary} 数组
+  * @return {number} 
+  */
   sum(arr) {
     return arr.reduce((pre, cur) => {
       return pre + cur
     })
   }
-
-  /*平均值*/
+  /**
+   * @description 作用：求数组平均值，仅适合数字数组, 否则返回NaN
+   * @param  {ary} 数组
+   * @return {number} 
+   */
   average(arr) {
-    return this.sum(arr) / arr.length
+    return this.sum(arr) / arr.length;
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
     <div class="FirstBottomPage">
-        <a href="http://beian.gov.cn/portal/index.do">粤ICP备19140452号-1</a> | Copyright © 2019-present 裂泉
+        <a href="http://beian.gov.cn/portal/index.do">粤ICP备19140452号-1</a> | Copyright © 2021 Joyrun
     </div>
 </template>
 

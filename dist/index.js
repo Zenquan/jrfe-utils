@@ -152,10 +152,10 @@ var ImageService = /*#__PURE__*/function () {
 
     /**
      * @description 作用：获取远程图片，解决例如html2canvas中跨域的问题
-     * @param url 远程图片的链接
-     * @param imgClass 获取到图片展示的样式
-     * @param type 'base64' | 'img' 决定返回值是url还是base64
-     * @return Promise<string>
+     * @param {url} 远程图片的链接
+     * @param {imgClass} 获取到图片展示的样式
+     * @param {type} 'base64' | 'img' 决定返回值是url还是base64
+     * @return {Promise}
      * 
      * @example 
      * ```js
@@ -370,8 +370,8 @@ var DanmuService = /*#__PURE__*/function () {
     }
     /**
      * @description 作用：监听事件
-     * @param envet 事件
-     * @param fn 函数
+     * @param {envet} 事件
+     * @param {fn} 函数
     */
 
   }, {
@@ -386,7 +386,7 @@ var DanmuService = /*#__PURE__*/function () {
     }
     /**
      * @description 作用：往后推入弹幕数据
-     * @param newdatas 弹幕数据
+     * @param {newdatas} 弹幕数据
     */
 
   }, {
@@ -411,56 +411,14 @@ var ArrayFn = /*#__PURE__*/function () {
   }
 
   _createClass(ArrayFn, [{
-    key: "contains",
+    key: "sort",
 
-    /*判断一个元素是否在数组中*/
-    value: function contains(arr, val) {
-      return arr.indexOf(val) != -1 ? true : false;
-    }
     /**
-     * @param  {arr} 数组
-     * @param  {fn} 回调函数
-     * @return {undefined}
-     */
-
-  }, {
-    key: "each",
-    value: function each(arr, fn) {
-      fn = fn || Function;
-      var args = Array.prototype.slice.call(arguments, 1);
-
-      for (var i = 0; i < arr.length; i++) {
-        var res = fn.apply(arr, [arr[i], i].concat(args));
-      }
-    }
-    /**
-     * @param  {arr} 数组
-     * @param  {fn} 回调函数
-     * @param  {thisObj} this指向
-     * @return {Array} 
-     */
-
-  }, {
-    key: "map",
-    value: function map(arr, fn, thisObj) {
-      var scope = thisObj || window;
-      var a = [];
-
-      for (var i = 0, j = arr.length; i < j; ++i) {
-        var res = fn.call(scope, arr[i], i, this);
-        if (res != null) a.push(res);
-      }
-
-      return a;
-    }
-    /**
+     * @description 作用：数组排序方法
      * @param  {arr} 数组
      * @param  {type} 1：从小到大   2：从大到小   3：随机
      * @return {Array}
      */
-
-  }, {
-    key: "sort",
     value: function sort(arr) {
       var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
       return arr.sort(function (a, b) {
@@ -479,7 +437,11 @@ var ArrayFn = /*#__PURE__*/function () {
         }
       });
     }
-    /*去重*/
+    /**
+     * @description 作用：数组去重方法
+     * @param  {arr} 数组
+     * @return {Array}
+     */
 
   }, {
     key: "unique",
@@ -520,7 +482,12 @@ var ArrayFn = /*#__PURE__*/function () {
         */
 
     }
-    /*求两个集合的并集*/
+    /**
+     * @description 作用：求两个集合的并集
+     * @param  {a} 数组
+     * @param  {b} 数组
+     * @return {Array}
+     */
 
   }, {
     key: "union",
@@ -528,7 +495,12 @@ var ArrayFn = /*#__PURE__*/function () {
       var newArr = a.concat(b);
       return this.unique(newArr);
     }
-    /*求两个集合的交集*/
+    /**
+     * @description 作用：求两个集合的交集
+     * @param  {a} 数组
+     * @param  {b} 数组
+     * @return {Array}
+     */
 
   }, {
     key: "intersect",
@@ -540,7 +512,12 @@ var ArrayFn = /*#__PURE__*/function () {
         return _this.contains(b, o) ? o : null;
       });
     }
-    /*删除其中一个元素*/
+    /**
+     * @description 作用：删除其中一个元素
+     * @param  {arr} 数组
+     * @param  {ele} 删除的元素索引
+     * @return {Array}
+     */
 
   }, {
     key: "remove",
@@ -553,7 +530,11 @@ var ArrayFn = /*#__PURE__*/function () {
 
       return arr;
     }
-    /*将类数组转换为数组的方法*/
+    /**
+     * @description 作用：将类数组转换为数组的方法
+     * @param  {ary} 数组
+     * @return {Array}
+     */
 
   }, {
     key: "formArray",
@@ -567,21 +548,33 @@ var ArrayFn = /*#__PURE__*/function () {
       }
       return arr;
     }
-    /*最大值*/
+    /**
+     * @description 作用：求数组最大值，仅适合数字数组
+     * @param  {ary} 数组
+     * @return {number} 
+     */
 
   }, {
     key: "max",
     value: function max(arr) {
       return Math.max.apply(null, arr);
     }
-    /*最小值*/
+    /**
+     * @description 作用：求数组最小值，仅适合数字数组, 否则返回NaN
+     * @param  {ary} 数组
+     * @return {number} 
+     */
 
   }, {
     key: "min",
     value: function min(arr) {
       return Math.min.apply(null, arr);
     }
-    /*求和*/
+    /**
+    * @description 作用：求数组和，仅适合数字数组, 否则返回NaN
+    * @param  {ary} 数组
+    * @return {number} 
+    */
 
   }, {
     key: "sum",
@@ -590,7 +583,11 @@ var ArrayFn = /*#__PURE__*/function () {
         return pre + cur;
       });
     }
-    /*平均值*/
+    /**
+     * @description 作用：求数组平均值，仅适合数字数组, 否则返回NaN
+     * @param  {ary} 数组
+     * @return {number} 
+     */
 
   }, {
     key: "average",
