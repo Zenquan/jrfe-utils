@@ -218,6 +218,13 @@
     return ImageService;
   }();
 
+  var defaultOption = {
+    maxSpeed: 10,
+    minSpeed: 3,
+    spaceRatio: 20,
+    danmakuLength: 5
+  };
+  var dep = {};
   /**
    * @author Zenquan
    * @description 作用：弹幕/走马灯服务
@@ -249,13 +256,6 @@
    * }
    * ```
    */
-  var defaultOption = {
-    maxSpeed: 10,
-    minSpeed: 3,
-    spaceRatio: 20,
-    danmakuLength: 5
-  };
-  var dep = {};
 
   var DanmuService = /*#__PURE__*/function () {
     function DanmuService(el) {
