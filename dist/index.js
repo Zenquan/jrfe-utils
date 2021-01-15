@@ -1,5 +1,5 @@
 /*!
- * @jomsou/utils 0.1.0 (https://github.com/zenquan/jrfe-utils)
+ * @jomsou/utils 0.1.1 (https://github.com/zenquan/jrfe-utils)
  * API https://github.com/zenquan/jrfe-utils/blob/master/doc/api.md
  * Copyright 2017-2021 zenquan. All Rights Reserved
  * Licensed under MIT (https://github.com/zenquan/jrfe-utils/blob/master/LICENSE)
@@ -151,29 +151,29 @@ var ImageService = /*#__PURE__*/function () {
     key: "getRemotePic",
 
     /**
-     * @description 作用：获取远程图片，解决例如html2canvas中跨域的问题
-     * @param {url} 远程图片的链接
-     * @param {imgClass} 获取到图片展示的样式
-     * @param {type} 'base64' | 'img' 决定返回值是url还是base64
-     * @return {Promise}
-     * 
-     * @example 
-     * ```js
-     * const { ImageService } = window['jrfe-utils'];
-     * const imageService = new ImageService();
-     * const getAvatar = async () => {
-     *  const avatarUrl =
-     *  'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg',
-     *   res1 = await imageService.getRemotePic(avatarUrl, 'avatar', 'base64'),
-     *   res2 = await imageService.getRemotePic(avatarUrl, 'avatar', 'img')
-     *   console.log('avatar>>>', res1, res2); 
-     *   document.body.appendChild(res2)
-     * }
-     * ```
-     */
+    * @description 作用：获取远程图片，解决例如html2canvas中跨域的问题
+    * @param url {string} 远程图片的链接
+    * @param imgClass {string} 获取到图片展示的样式
+    * @param type {'base64' | 'img'} 决定返回值是url还是base64
+    * @return {Promise}
+    * 
+    * @example 
+    * ```js
+    * const { ImageService } = window['jrfe-utils'];
+    * const imageService = new ImageService();
+    * const getAvatar = async () => {
+    *  const avatarUrl =
+    *  'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg',
+    *   res1 = await imageService.getRemotePic(avatarUrl, 'avatar', 'base64'),
+    *   res2 = await imageService.getRemotePic(avatarUrl, 'avatar', 'img')
+    *   console.log('avatar>>>', res1, res2); 
+    *   document.body.appendChild(res2)
+    * }
+    * ```
+    */
     value: function getRemotePic(url, imgClass, type) {
       return new Promise(function (resolve, reject) {
-        window.URL = window.URL || webkitURL; // Take care of vendor prefixes.
+        window.URL = window.URL || window.webkitURL; // Take care of vendor prefixes.
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -216,6 +216,37 @@ var ImageService = /*#__PURE__*/function () {
   return ImageService;
 }();
 
+/**
+ * @author Zenquan
+ * @description 作用：弹幕/走马灯服务
+ * @field 2021/01/13
+ * @param el {HTMLElement} 元素节点
+ * @param data {Array} 弹幕数据
+ * @param option {object} maxSpeed {number} 最大速度, minSpeed {number} 最小速度, spaceRatio {number} 弹幕行走曲率半径, danmakuLength {number} 同时行走的弹幕数量 
+ * 
+ * @example
+ * ```js
+ * <section ref="danmaku" class="Danmaku"></section>
+ * 
+ * mounted() {
+ *  setTimeout(() => {
+ *    this.$nextTick(() => {
+ *     let danmakuData = [].concat(this.danmakuData);
+ *    console.log('danmakuData>>>', danmakuData);
+ *      this.danmaku = new Danmaku(this.$refs.danmaku, danmakuData, {
+ *         maxSpeed: 10,
+ *         minSpeed: 5,
+ *         spaceRatio: 0,
+ *         danmakuLength: 1
+ *       });
+ *       this.danmaku.on("nodata", () => {
+ *         this.danmaku.appendData([].concat(this.danmakuData));
+ *       });
+ *     })
+ *   }, 3000)
+ * }
+ * ```
+ */
 var defaultOption = {
   maxSpeed: 10,
   minSpeed: 3,
@@ -223,11 +254,6 @@ var defaultOption = {
   danmakuLength: 5
 };
 var dep = {};
-/**
- * @author Zenquan
- * @description 作用：弹幕/走马灯服务
- * @date 2021/01/13
- */
 
 var DanmuService = /*#__PURE__*/function () {
   function DanmuService(el) {
@@ -236,8 +262,8 @@ var DanmuService = /*#__PURE__*/function () {
 
     _classCallCheck(this, DanmuService);
 
-    if (_typeof(el) !== "object") throw new Error("传入非法el");
-    if (!data.length) return console.log("没有需要滚动的弹幕");
+    if (_typeof(el) !== 'object') throw new Error('传入非法el');
+    if (!data.length) return console.log('没有需要滚动的弹幕');
     this.option = Object.assign(defaultOption, option);
     var danmakuLength = this.option.danmakuLength;
     var elSize = el.getBoundingClientRect();
@@ -268,9 +294,9 @@ var DanmuService = /*#__PURE__*/function () {
   }, {
     key: "createDom",
     value: function createDom(danmakuData) {
-      var wrap = document.createElement("div");
-      var dom = document.createElement("div");
-      var img = document.createElement("img");
+      var wrap = document.createElement('div');
+      var dom = document.createElement('div');
+      var img = document.createElement('img');
       img.src = danmakuData.faceUrl;
       dom.innerHTML = danmakuData.title;
       wrap.appendChild(img);
@@ -280,9 +306,9 @@ var DanmuService = /*#__PURE__*/function () {
   }, {
     key: "setDomPosition",
     value: function setDomPosition(dom) {
-      Math.random() > 0.5 ? dom.setAttribute("class", "danmaku-item one") : dom.setAttribute("class", "danmaku-item two");
-      var domSize = dom.getBoundingClientRect();
-      var domWidth = domSize.width;
+      Math.random() > 0.5 ? dom.setAttribute('class', 'danmaku-item one') : dom.setAttribute('class', 'danmaku-item two');
+      var domSize = dom.getBoundingClientRect(); // let domWidth = domSize.width;
+
       var domHeight = domSize.height;
       var spaceRatio = this.option.spaceRatio;
       var danmakuSpace = parseInt(Math.random() * ((this.elHeight - domHeight) / spaceRatio));
@@ -299,7 +325,7 @@ var DanmuService = /*#__PURE__*/function () {
       var second = parseInt(Math.random() * (maxSpeed - minSpeed) + minSpeed);
       var speed = (this.elWidth / (second * 60)).toFixed(3); // console.log('speed>>>', speed, this.elWidth)
 
-      dom.setAttribute("data-speed", speed);
+      dom.setAttribute('data-speed', speed);
     }
   }, {
     key: "animationTimer",
@@ -309,7 +335,7 @@ var DanmuService = /*#__PURE__*/function () {
       window.requestAnimationFrame(function () {
         for (var i = 0; i < _this.aliveItems.length; i++) {
           var dom = _this.aliveItems[i];
-          var domSpeed = dom.getAttribute("data-speed");
+          var domSpeed = dom.getAttribute('data-speed');
           var domLeft = dom.getBoundingClientRect().left;
           var domWidth = dom.getBoundingClientRect().width;
           dom.style.transform = "translateX(".concat(domLeft - domSpeed, "px)");
@@ -355,13 +381,13 @@ var DanmuService = /*#__PURE__*/function () {
     key: "notifyAddDom",
     value: function notifyAddDom() {
       if (!this.data.length) {
-        return this.emit("nodata");
+        return this.emit('nodata');
       }
 
       var danmakuData = this.data.shift();
       var dom = this.deatdItems.shift();
-      var container = dom.querySelector("div");
-      var imgDom = dom.querySelector("img");
+      var container = dom.querySelector('div');
+      var imgDom = dom.querySelector('img');
       container.innerHTML = danmakuData.title;
       imgDom.src = danmakuData.faceUrl;
       this.aliveItems.push(dom);
@@ -369,9 +395,9 @@ var DanmuService = /*#__PURE__*/function () {
       this.setDomSpeed(dom);
     }
     /**
-     * @description 作用：监听事件
-     * @param {envet} 事件
-     * @param {fn} 函数
+    * @description 作用：监听事件
+    * @param envet {string} 事件
+    * @param fn {Function} 函数
     */
 
   }, {
@@ -385,8 +411,8 @@ var DanmuService = /*#__PURE__*/function () {
       dep[event]();
     }
     /**
-     * @description 作用：往后推入弹幕数据
-     * @param {newdatas} 弹幕数据
+    * @description 作用：往后推入弹幕数据
+    * @param newdatas {Array} 弹幕数据
     */
 
   }, {
@@ -414,11 +440,11 @@ var ArrayFn = /*#__PURE__*/function () {
     key: "sort",
 
     /**
-     * @description 作用：数组排序方法
-     * @param  {arr} 数组
-     * @param  {type} 1：从小到大   2：从大到小   3：随机
-     * @return {Array}
-     */
+    * @description 作用：数组排序方法
+    * @param  arr {Array} 数组
+    * @param  type {number} 1：从小到大   2：从大到小   3：随机
+    * @return {Array}
+    */
     value: function sort(arr) {
       var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
       return arr.sort(function (a, b) {
@@ -438,10 +464,10 @@ var ArrayFn = /*#__PURE__*/function () {
       });
     }
     /**
-     * @description 作用：数组去重方法
-     * @param  {arr} 数组
-     * @return {Array}
-     */
+    * @description 作用：数组去重方法
+    * @param  arr {Array} 数组
+    * @return {Array}
+    */
 
   }, {
     key: "unique",
@@ -483,11 +509,11 @@ var ArrayFn = /*#__PURE__*/function () {
 
     }
     /**
-     * @description 作用：求两个集合的并集
-     * @param  {a} 数组
-     * @param  {b} 数组
-     * @return {Array}
-     */
+    * @description 作用：求两个集合的并集
+    * @param  a {Array} 数组
+    * @param  b {Array} 数组
+    * @return {Array}
+    */
 
   }, {
     key: "union",
@@ -496,11 +522,11 @@ var ArrayFn = /*#__PURE__*/function () {
       return this.unique(newArr);
     }
     /**
-     * @description 作用：求两个集合的交集
-     * @param  {a} 数组
-     * @param  {b} 数组
-     * @return {Array}
-     */
+    * @description 作用：求两个集合的交集
+    * @param  a {Array} 数组
+    * @param  b {Array} 数组
+    * @return {Array}
+    */
 
   }, {
     key: "intersect",
@@ -513,11 +539,11 @@ var ArrayFn = /*#__PURE__*/function () {
       });
     }
     /**
-     * @description 作用：删除其中一个元素
-     * @param  {arr} 数组
-     * @param  {ele} 删除的元素索引
-     * @return {Array}
-     */
+    * @description 作用：删除其中一个元素
+    * @param  arr {Array} 数组
+    * @param  ele {number} 删除的元素索引
+    * @return {Array}
+    */
 
   }, {
     key: "remove",
@@ -531,10 +557,10 @@ var ArrayFn = /*#__PURE__*/function () {
       return arr;
     }
     /**
-     * @description 作用：将类数组转换为数组的方法
-     * @param  {ary} 数组
-     * @return {Array}
-     */
+    * @description 作用：将类数组转换为数组的方法
+    * @param  ary {Array} 数组
+    * @return {Array}
+    */
 
   }, {
     key: "formArray",
@@ -546,13 +572,14 @@ var ArrayFn = /*#__PURE__*/function () {
       } else {
         arr = Array.prototype.slice.call(ary);
       }
+
       return arr;
     }
     /**
-     * @description 作用：求数组最大值，仅适合数字数组
-     * @param  {ary} 数组
-     * @return {number} 
-     */
+    * @description 作用：求数组最大值，仅适合数字数组
+    * @param  ary {Array} 数组
+    * @return {number} 
+    */
 
   }, {
     key: "max",
@@ -560,10 +587,10 @@ var ArrayFn = /*#__PURE__*/function () {
       return Math.max.apply(null, arr);
     }
     /**
-     * @description 作用：求数组最小值，仅适合数字数组, 否则返回NaN
-     * @param  {ary} 数组
-     * @return {number} 
-     */
+    * @description 作用：求数组最小值，仅适合数字数组, 否则返回NaN
+    * @param  ary {Array} 数组
+    * @return {number} 
+    */
 
   }, {
     key: "min",
@@ -572,7 +599,7 @@ var ArrayFn = /*#__PURE__*/function () {
     }
     /**
     * @description 作用：求数组和，仅适合数字数组, 否则返回NaN
-    * @param  {ary} 数组
+    * @param  ary {Array} 数组
     * @return {number} 
     */
 
@@ -584,10 +611,10 @@ var ArrayFn = /*#__PURE__*/function () {
       });
     }
     /**
-     * @description 作用：求数组平均值，仅适合数字数组, 否则返回NaN
-     * @param  {ary} 数组
-     * @return {number} 
-     */
+    * @description 作用：求数组平均值，仅适合数字数组, 否则返回NaN
+    * @param  ary {Array} 数组
+    * @return {number} 
+    */
 
   }, {
     key: "average",
@@ -599,13 +626,43 @@ var ArrayFn = /*#__PURE__*/function () {
   return ArrayFn;
 }();
 
+/**
+ *  @author Zenquan
+  * @description 作用：时间处理
+**/
+var TimeFn = /*#__PURE__*/function () {
+  function TimeFn() {
+    _classCallCheck(this, TimeFn);
+  }
+
+  _createClass(TimeFn, [{
+    key: "getAge",
+
+    /**
+    * @description 作用：获取年龄
+    * @param date {string} 1990/01/01 or 1990-01-01
+    * @return {number}
+    */
+    value: function getAge(date) {
+      var birthday = new Date(date);
+      var d = new Date();
+      var age = d.getFullYear() - birthday.getFullYear() - (d.getMonth() < birthday.getMonth() || d.getMonth() == birthday.getMonth() && d.getDate() < birthday.getDate() ? 1 : 0);
+      return age;
+    }
+  }]);
+
+  return TimeFn;
+}();
+
 var index = {
   ImageService: ImageService,
   DanmuService: DanmuService,
-  ArrayFn: ArrayFn
+  ArrayFn: ArrayFn,
+  TimeFn: TimeFn
 };
 
 exports.ImageService = ImageService;
 exports.DanmuService = DanmuService;
 exports.ArrayFn = ArrayFn;
+exports.TimeFn = TimeFn;
 exports.default = index;

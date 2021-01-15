@@ -28,6 +28,16 @@
 - B: "构建静态资源"
 - F: "修复 X 页面的问题"
 
+**script**
+```json
+{
+  "docs:jsdoc2md": "rimraf docs/pages/folder1/api.md && npx jsdoc2md src/* >> docs/pages/folder1/api.md", // 由代码中注释生成markdown文档
+  "docs:build": "npm run docs:jsdoc2md && npx vuepress build docs", // 由代码中注释生成markdown文档，并且生成vuepress静态资源文件
+  "docs:dev": "npm run docs:jsdoc2md && npx vuepress dev docs", // 由代码中注释生成markdown文档, 并在本地运行vuepress
+  "deploy": "npm run build && npm run docs:build", 
+}
+```
+
 ## 使用
 
 ```bash

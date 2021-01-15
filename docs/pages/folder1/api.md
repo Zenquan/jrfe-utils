@@ -7,6 +7,8 @@
 <dd></dd>
 <dt><a href="#ImageService">ImageService</a></dt>
 <dd></dd>
+<dt><a href="#TimeFn">TimeFn</a></dt>
+<dd></dd>
 </dl>
 
 <a name="ArrayFn"></a>
@@ -18,16 +20,16 @@
 
 * [ArrayFn](#ArrayFn)
     * [new ArrayFn()](#new_ArrayFn_new)
-    * [.sort(数组, 1：从小到大)](#ArrayFn+sort) ⇒ <code>Array</code>
-    * [.unique(数组)](#ArrayFn+unique) ⇒ <code>Array</code>
-    * [.union(数组, 数组)](#ArrayFn+union) ⇒ <code>Array</code>
-    * [.intersect(数组, 数组)](#ArrayFn+intersect) ⇒ <code>Array</code>
-    * [.remove(数组, 删除的元素索引)](#ArrayFn+remove) ⇒ <code>Array</code>
-    * [.formArray(数组)](#ArrayFn+formArray) ⇒ <code>Array</code>
-    * [.max(数组)](#ArrayFn+max) ⇒ <code>number</code>
-    * [.min(数组)](#ArrayFn+min) ⇒ <code>number</code>
-    * [.sum(数组)](#ArrayFn+sum) ⇒ <code>number</code>
-    * [.average(数组)](#ArrayFn+average) ⇒ <code>number</code>
+    * [.sort(arr, type)](#ArrayFn+sort) ⇒ <code>Array</code>
+    * [.unique(arr)](#ArrayFn+unique) ⇒ <code>Array</code>
+    * [.union(a, b)](#ArrayFn+union) ⇒ <code>Array</code>
+    * [.intersect(a, b)](#ArrayFn+intersect) ⇒ <code>Array</code>
+    * [.remove(arr, ele)](#ArrayFn+remove) ⇒ <code>Array</code>
+    * [.formArray(ary)](#ArrayFn+formArray) ⇒ <code>Array</code>
+    * [.max(ary)](#ArrayFn+max) ⇒ <code>number</code>
+    * [.min(ary)](#ArrayFn+min) ⇒ <code>number</code>
+    * [.sum(ary)](#ArrayFn+sum) ⇒ <code>number</code>
+    * [.average(ary)](#ArrayFn+average) ⇒ <code>number</code>
 
 <a name="new_ArrayFn_new"></a>
 
@@ -36,157 +38,186 @@
 
 <a name="ArrayFn+sort"></a>
 
-### arrayFn.sort(数组, 1：从小到大) ⇒ <code>Array</code>
+### arrayFn.sort(arr, type) ⇒ <code>Array</code>
 作用：数组排序方法
+
+**Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| arr | <code>Array</code> |  | 数组 |
+| type | <code>number</code> | <code>1</code> | 1：从小到大   2：从大到小   3：随机 |
+
+<a name="ArrayFn+unique"></a>
+
+### arrayFn.unique(arr) ⇒ <code>Array</code>
+作用：数组去重方法
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| 数组 | <code>arr</code> |  |
-| 1：从小到大 | <code>type</code> | 2：从大到小   3：随机 |
-
-<a name="ArrayFn+unique"></a>
-
-### arrayFn.unique(数组) ⇒ <code>Array</code>
-作用：数组去重方法
-
-**Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
-
-| Param | Type |
-| --- | --- |
-| 数组 | <code>arr</code> | 
+| arr | <code>Array</code> | 数组 |
 
 <a name="ArrayFn+union"></a>
 
-### arrayFn.union(数组, 数组) ⇒ <code>Array</code>
+### arrayFn.union(a, b) ⇒ <code>Array</code>
 作用：求两个集合的并集
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
-| Param | Type |
-| --- | --- |
-| 数组 | <code>a</code> | 
-| 数组 | <code>b</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| a | <code>Array</code> | 数组 |
+| b | <code>Array</code> | 数组 |
 
 <a name="ArrayFn+intersect"></a>
 
-### arrayFn.intersect(数组, 数组) ⇒ <code>Array</code>
+### arrayFn.intersect(a, b) ⇒ <code>Array</code>
 作用：求两个集合的交集
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
-| Param | Type |
-| --- | --- |
-| 数组 | <code>a</code> | 
-| 数组 | <code>b</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| a | <code>Array</code> | 数组 |
+| b | <code>Array</code> | 数组 |
 
 <a name="ArrayFn+remove"></a>
 
-### arrayFn.remove(数组, 删除的元素索引) ⇒ <code>Array</code>
+### arrayFn.remove(arr, ele) ⇒ <code>Array</code>
 作用：删除其中一个元素
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
-| Param | Type |
-| --- | --- |
-| 数组 | <code>arr</code> | 
-| 删除的元素索引 | <code>ele</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| arr | <code>Array</code> | 数组 |
+| ele | <code>number</code> | 删除的元素索引 |
 
 <a name="ArrayFn+formArray"></a>
 
-### arrayFn.formArray(数组) ⇒ <code>Array</code>
+### arrayFn.formArray(ary) ⇒ <code>Array</code>
 作用：将类数组转换为数组的方法
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
-| Param | Type |
-| --- | --- |
-| 数组 | <code>ary</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| ary | <code>Array</code> | 数组 |
 
 <a name="ArrayFn+max"></a>
 
-### arrayFn.max(数组) ⇒ <code>number</code>
+### arrayFn.max(ary) ⇒ <code>number</code>
 作用：求数组最大值，仅适合数字数组
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
-| Param | Type |
-| --- | --- |
-| 数组 | <code>ary</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| ary | <code>Array</code> | 数组 |
 
 <a name="ArrayFn+min"></a>
 
-### arrayFn.min(数组) ⇒ <code>number</code>
+### arrayFn.min(ary) ⇒ <code>number</code>
 作用：求数组最小值，仅适合数字数组, 否则返回NaN
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
-| Param | Type |
-| --- | --- |
-| 数组 | <code>ary</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| ary | <code>Array</code> | 数组 |
 
 <a name="ArrayFn+sum"></a>
 
-### arrayFn.sum(数组) ⇒ <code>number</code>
+### arrayFn.sum(ary) ⇒ <code>number</code>
 作用：求数组和，仅适合数字数组, 否则返回NaN
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
-| Param | Type |
-| --- | --- |
-| 数组 | <code>ary</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| ary | <code>Array</code> | 数组 |
 
 <a name="ArrayFn+average"></a>
 
-### arrayFn.average(数组) ⇒ <code>number</code>
+### arrayFn.average(ary) ⇒ <code>number</code>
 作用：求数组平均值，仅适合数字数组, 否则返回NaN
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
-| Param | Type |
-| --- | --- |
-| 数组 | <code>ary</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| ary | <code>Array</code> | 数组 |
 
 <a name="DanmuService"></a>
 
 ## DanmuService
 **Kind**: global class  
-**Date**: 2021/01/13  
+**Field**: 2021/01/13  
 **Author**: Zenquan  
 
 * [DanmuService](#DanmuService)
-    * [new DanmuService()](#new_DanmuService_new)
-    * [.on(事件, 函数)](#DanmuService+on)
-    * [.appendData(弹幕数据)](#DanmuService+appendData)
+    * [new DanmuService(el, data, option)](#new_DanmuService_new)
+    * [.on(envet, fn)](#DanmuService+on)
+    * [.appendData(newdatas)](#DanmuService+appendData)
 
 <a name="new_DanmuService_new"></a>
 
-### new DanmuService()
+### new DanmuService(el, data, option)
 作用：弹幕/走马灯服务
 
+
+| Param | Type | Description |
+| --- | --- | --- |
+| el | <code>HTMLElement</code> | 元素节点 |
+| data | <code>Array</code> | 弹幕数据 |
+| option | <code>object</code> | maxSpeed {number} 最大速度, minSpeed {number} 最小速度, spaceRatio {number} 弹幕行走曲率半径, danmakuLength {number} 同时行走的弹幕数量 |
+
+**Example**  
+```js
+<section ref="danmaku" class="Danmaku"></section>
+
+mounted() {
+ setTimeout(() => {
+   this.$nextTick(() => {
+    let danmakuData = [].concat(this.danmakuData);
+   console.log('danmakuData>>>', danmakuData);
+     this.danmaku = new Danmaku(this.$refs.danmaku, danmakuData, {
+        maxSpeed: 10,
+        minSpeed: 5,
+        spaceRatio: 0,
+        danmakuLength: 1
+      });
+      this.danmaku.on("nodata", () => {
+        this.danmaku.appendData([].concat(this.danmakuData));
+      });
+    })
+  }, 3000)
+}
+```
 <a name="DanmuService+on"></a>
 
-### danmuService.on(事件, 函数)
+### danmuService.on(envet, fn)
 作用：监听事件
 
 **Kind**: instance method of [<code>DanmuService</code>](#DanmuService)  
 
-| Param | Type |
-| --- | --- |
-| 事件 | <code>envet</code> | 
-| 函数 | <code>fn</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| envet | <code>string</code> | 事件 |
+| fn | <code>function</code> | 函数 |
 
 <a name="DanmuService+appendData"></a>
 
-### danmuService.appendData(弹幕数据)
+### danmuService.appendData(newdatas)
 作用：往后推入弹幕数据
 
 **Kind**: instance method of [<code>DanmuService</code>](#DanmuService)  
 
-| Param | Type |
-| --- | --- |
-| 弹幕数据 | <code>newdatas</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| newdatas | <code>Array</code> | 弹幕数据 |
 
 <a name="ImageService"></a>
 
@@ -197,7 +228,7 @@
 
 * [ImageService](#ImageService)
     * [new ImageService()](#new_ImageService_new)
-    * [.getRemotePic(远程图片的链接, 获取到图片展示的样式, &#x27;base64&#x27;)](#ImageService+getRemotePic) ⇒ <code>Promise</code>
+    * [.getRemotePic(url, imgClass, type)](#ImageService+getRemotePic) ⇒ <code>Promise</code>
 
 <a name="new_ImageService_new"></a>
 
@@ -206,16 +237,16 @@
 
 <a name="ImageService+getRemotePic"></a>
 
-### imageService.getRemotePic(远程图片的链接, 获取到图片展示的样式, &#x27;base64&#x27;) ⇒ <code>Promise</code>
+### imageService.getRemotePic(url, imgClass, type) ⇒ <code>Promise</code>
 作用：获取远程图片，解决例如html2canvas中跨域的问题
 
 **Kind**: instance method of [<code>ImageService</code>](#ImageService)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| 远程图片的链接 | <code>url</code> |  |
-| 获取到图片展示的样式 | <code>imgClass</code> |  |
-| 'base64' | <code>type</code> | | 'img' 决定返回值是url还是base64 |
+| url | <code>string</code> | 远程图片的链接 |
+| imgClass | <code>string</code> | 获取到图片展示的样式 |
+| type | <code>&#x27;base64&#x27;</code> \| <code>&#x27;img&#x27;</code> | 决定返回值是url还是base64 |
 
 **Example**  
 ```js
@@ -230,3 +261,29 @@ const getAvatar = async () => {
   document.body.appendChild(res2)
 }
 ```
+<a name="TimeFn"></a>
+
+## TimeFn
+**Kind**: global class  
+**Author**: Zenquan  
+
+* [TimeFn](#TimeFn)
+    * [new TimeFn()](#new_TimeFn_new)
+    * [.getAge(date)](#TimeFn+getAge) ⇒ <code>number</code>
+
+<a name="new_TimeFn_new"></a>
+
+### new TimeFn()
+作用：时间处理
+
+<a name="TimeFn+getAge"></a>
+
+### timeFn.getAge(date) ⇒ <code>number</code>
+作用：获取年龄
+
+**Kind**: instance method of [<code>TimeFn</code>](#TimeFn)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| date | <code>string</code> | 1990/01/01 or 1990-01-01 |
+
