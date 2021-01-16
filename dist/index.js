@@ -47,6 +47,10 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
 function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
@@ -55,8 +59,39 @@ function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) return _arrayLikeToArray(arr);
 }
 
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
 function _iterableToArray(iter) {
   if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
 }
 
 function _unsupportedIterableToArray(o, minLen) {
@@ -78,6 +113,10 @@ function _arrayLikeToArray(arr, len) {
 
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 function _createForOfIteratorHelper(o, allowArrayLike) {
@@ -137,11 +176,67 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
   };
 }
 
+var mimes = {
+  'css': 'text/css',
+  'less': 'text/css',
+  'gif': 'image/gif',
+  'html': 'text/html',
+  'ico': 'image/x-icon',
+  'jpeg': 'image/jpeg',
+  'jpg': 'image/jpg',
+  'js': 'text/javascript',
+  'json': 'application/json',
+  'pdf': 'application/pdf',
+  'png': 'image/png',
+  'svg': 'image/svg',
+  'swf': 'application/x-shockwave-flash',
+  'tiff': 'image/tiff',
+  'txt': 'text/plain',
+  'wav': 'audio/x-wav',
+  'wmv': 'video/x-ms-wmv',
+  'wma': 'video/x-ms-wma',
+  'xml': 'text/xml'
+};
+/** 
+ * @description 作用：媒体类型的处理
+ * @field 2021/01/16
+**/
+
+var Mime = /*#__PURE__*/function () {
+  function Mime() {
+    _classCallCheck(this, Mime);
+  }
+
+  _createClass(Mime, [{
+    key: "lookup",
+
+    /** 
+    * @description 作用：媒体类型的判断 
+    * @param url {string} 图片的链接
+    * 
+    * @example
+    * ```js
+    * const shareUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg'
+    * const mimeInstance = new Mime();
+    * mimeInstance.lookup(shareUrl) // 'image/jpg'
+    * ```
+    **/
+    value: function lookup(url) {
+      var urlArr = url.split('/'),
+          len = urlArr.length,
+          mineType = urlArr[len - 1].match(/\.\S+/)[0].match(/[^.]+/)[0];
+      return mimes[mineType];
+    }
+  }]);
+
+  return Mime;
+}();
+
 /**
- * @author Zenquan
  * @description 作用：图片处理服务
  * @field 2021/01/13
  */
+
 var ImageService = /*#__PURE__*/function () {
   function ImageService() {
     _classCallCheck(this, ImageService);
@@ -211,6 +306,61 @@ var ImageService = /*#__PURE__*/function () {
         console.log('error>>>', error);
       });
     }
+    /**
+      * @description 作用：判断是否支持webp格式
+      * @return {boolean}
+      * 
+      * @example
+      * ```js
+      * const supportWebp = imageService.isSupportWebp(); // true or false
+      * ```
+    **/
+
+  }, {
+    key: "isSupportWebp",
+    value: function isSupportWebp() {
+      var supportWebp = !![].map && document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0;
+      return supportWebp;
+    }
+    /**
+      * @description 作用：将又拍云图片改成webp格式
+      * @param url {string} 图片又拍云地址
+      * @param config {object} 配置 详情见 https://help.upyun.com/knowledge-base/image/
+      * @return {string} 
+      *
+      * @example
+      * ```js
+      * getWebpImage(url, {
+      *   fw: 600
+      * }) 
+      * ```
+    **/
+
+  }, {
+    key: "getWebpImage",
+    value: function getWebpImage(url, config) {
+      var mime = new Mime();
+      var mimeType = mime.lookup(url);
+      url += '!';
+
+      if (this.isSupportWebp()) {
+        if (mimeType === 'image/jpeg') {
+          url += '/format/webp';
+        } else {
+          url += '/format/webp/lossless/true';
+        }
+      }
+
+      for (var _i = 0, _Object$entries = Object.entries(config); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        url += "/".concat(key, "/").concat(value);
+      }
+
+      return url;
+    }
   }]);
 
   return ImageService;
@@ -224,7 +374,6 @@ var defaultOption = {
 };
 var dep = {};
 /**
- * @author Zenquan
  * @description 作用：弹幕/走马灯服务
  * @field 2021/01/13
  * @param el {HTMLElement} 元素节点
@@ -427,7 +576,6 @@ var DanmuService = /*#__PURE__*/function () {
 }();
 
 /**
- * @author Zenquan
  * @description 作用：数组扩展方法
  * @field 2021/01/13
  */
@@ -627,8 +775,8 @@ var ArrayFn = /*#__PURE__*/function () {
 }();
 
 /**
- *  @author Zenquan
   * @description 作用：时间处理
+  * @field 2021/01/15
 **/
 var TimeFn = /*#__PURE__*/function () {
   function TimeFn() {
@@ -642,6 +790,12 @@ var TimeFn = /*#__PURE__*/function () {
     * @description 作用：获取年龄
     * @param date {string} 1990/01/01 or 1990-01-01
     * @return {number}
+    * 
+    * @example
+    * ```js
+    * const timeFnInstance = new TimeFn(); 
+    * timeFnInstance.getAge('1991-01-01') // 30
+    * ```
     */
     value: function getAge(date) {
       var birthday = new Date(date);
@@ -654,15 +808,115 @@ var TimeFn = /*#__PURE__*/function () {
   return TimeFn;
 }();
 
+/**
+  * @description 作用：一些关于系统的处理
+  * @field 2021/01/15
+**/
+var Os = /*#__PURE__*/function () {
+  function Os() {
+    _classCallCheck(this, Os);
+  }
+
+  _createClass(Os, [{
+    key: "checkAppV1AndV2",
+
+    /**
+    * @description 作用：版本大小的判断
+    * @param v1 {number} 
+    * @param v2 {number}
+    * @return {number} -1 v1小于v2 | 1 v1大于v2 | 0 v1等于v2
+    *
+    * @example
+    * ```js
+    * checkAppV1AndV2('5.14.3', '5.15.0')
+    * ```
+    **/
+    value: function checkAppV1AndV2(v1, v2) {
+      var _v1 = v1.split('.'),
+          _v2 = v2.split('.'),
+          _r = +_v1[0] - +_v2[0],
+          flag = _r == 0 && v1 != v2 ? this.checkAppV1AndV2(_v1.splice(1).join('.'), _v2.splice(1).join('.')) : _r;
+
+      return flag;
+    }
+    /**
+      * @description 作用：是否大于目标版本
+      * @param basic {string} 目标版本
+      * @param target {string} 拿来比较的版本
+      * @return {boolean} 
+      *
+      * @example
+      * ```js
+      * checkAppVersionIsOK('5.14.3', '5.15.0') 
+      * ```
+    **/
+
+  }, {
+    key: "checkAppVersionIsOK",
+    value: function checkAppVersionIsOK(basic, target) {
+      return !(this.checkAppV1AndV2(basic, target) > 0);
+    }
+  }, {
+    key: "isSamsung",
+    value: function isSamsung(sUserAgent) {
+      return sUserAgent.match(/sm-/i) == 'sm-';
+    }
+  }, {
+    key: "isIPhone",
+    value: function isIPhone(sUserAgent) {
+      return sUserAgent.match(/iphone/i) == 'iphone';
+    }
+    /**
+      * @description 作用：根据不同机型进行软件更新跳转
+      * @param uaStr {string} user agent
+      * @return {boolean} 
+      *
+      * @example
+      * ```js 
+      * if (softwareUpdate()) {
+      *  softwareUpdate()
+      * } else {
+      *  Toast('当前手机不支持，请至应用市场更新');
+      * }
+      * ```
+    **/
+
+  }, {
+    key: "softwareUpdate",
+    value: function softwareUpdate(uaStr) {
+      var ua = window.hasOwnProperty('navigator') ? navigator.userAgent.toLowerCase() : uaStr;
+      var samsung = this.isSamsung(ua),
+          iPhone = this.isIPhone(ua);
+
+      if (samsung) {
+        window.location.href = 'http://www.samsungapps.com/appquery/appDetail.as?appId=co.runner.app';
+        return true;
+      } else if (iPhone) {
+        window.location.href = 'https://apps.apple.com/cn/app/yue-pao-quan-yue-pao-yue-xiang/id881766160?l=zh&ls=1&mt=8';
+        return true;
+      } else {
+        window.location.href = 'https://frontend-app.thejoyrun.com/release/joyrun.apk';
+        return true;
+      }
+    }
+  }]);
+
+  return Os;
+}();
+
 var index = {
   ImageService: ImageService,
   DanmuService: DanmuService,
   ArrayFn: ArrayFn,
-  TimeFn: TimeFn
+  TimeFn: TimeFn,
+  Os: Os,
+  Mime: Mime
 };
 
 exports.ImageService = ImageService;
 exports.DanmuService = DanmuService;
 exports.ArrayFn = ArrayFn;
 exports.TimeFn = TimeFn;
+exports.Os = Os;
+exports.Mime = Mime;
 exports.default = index;

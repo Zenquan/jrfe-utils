@@ -23,12 +23,20 @@ module.exports = {
         text: '分类',
         ariaLabel: '分类',
         items: [{
-            text: '安装',
+            text: '说明',
             link: '/pages/folder1/install.md'
           },
           {
             text: 'API',
             link: '/pages/folder1/api.md'
+          },
+          {
+            text: '变更日志',
+            link: '/pages/folder1/CHANGELOG.md'
+          },
+          {
+            text: '计划列表',
+            link: '/pages/folder1/TODO.md'
           },
         ]
       },
@@ -40,8 +48,10 @@ module.exports = {
     sidebar: {
       '/pages/folder1/': [
         'install',
-        'api'
-      ]
+        'api',
+        'CHANGELOG',
+        'TODO'
+      ],
     }
   }
 }

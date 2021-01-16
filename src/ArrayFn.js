@@ -1,5 +1,4 @@
 /**
- * @author Zenquan
  * @description 作用：数组扩展方法
  * @field 2021/01/13
  */

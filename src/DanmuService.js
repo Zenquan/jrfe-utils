@@ -7,7 +7,6 @@ const defaultOption = {
 let dep = {};
 
 /**
- * @author Zenquan
  * @description 作用：弹幕/走马灯服务
  * @field 2021/01/13
  * @param el {HTMLElement} 元素节点

@@ -1,5 +1,6 @@
+import Mime from './Mime';
+
 /**
- * @author Zenquan
  * @description 作用：图片处理服务
  * @field 2021/01/13
  */
@@ -64,6 +65,55 @@ class ImageService {
             .catch(error => {
                 console.log('error>>>', error);
             });
+    }
+    /**
+      * @description 作用：判断是否支持webp格式
+      * @return {boolean}
+      * 
+      * @example
+      * ```js
+      * const supportWebp = imageService.isSupportWebp(); // true or false
+      * ```
+    **/
+    isSupportWebp () {
+        const supportWebp = !![].map &&
+      document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0;
+
+        return supportWebp;
+    }
+    /**
+      * @description 作用：将又拍云图片改成webp格式
+      * @param url {string} 图片又拍云地址
+      * @param config {object} 配置 详情见 https://help.upyun.com/knowledge-base/image/
+      * @return {string} 
+      *
+      * @example
+      * ```js
+      * getWebpImage(url, {
+      *   fw: 600
+      * }) 
+      * ```
+    **/
+    getWebpImage (url, config) {
+        const mime = new Mime();
+        let mimeType = mime.lookup(url);
+        url += '!';
+
+        if (this.isSupportWebp()) {
+
+            if (mimeType === 'image/jpeg') {
+                url += '/format/webp';
+
+            } else {
+                url += '/format/webp/lossless/true';
+            }
+        }
+
+        for (let [key, value] of Object.entries(config)) {
+            url += `/${key}/${value}`;
+        }
+
+        return url;
     }
 }
 

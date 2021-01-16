@@ -17,8 +17,10 @@
       const avatarUrl =
         'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg',
         res1 = await imageService.getRemotePic(avatarUrl, 'avatar', 'base64'),
-        res2 = await imageService.getRemotePic(avatarUrl, 'avatar', 'img')
-      console.log('avatar>>>', res1, res2);
+        res2 = await imageService.getRemotePic(avatarUrl, 'avatar', 'img'),
+        webpImg = imageService.getWebpImage(avatarUrl, { fw: 600 }),
+        supportWebp = imageService.isSupportWebp();
+      console.log('avatar>>>', res1, res2, webpImg, supportWebp);
       document.body.appendChild(res2)
     }
 

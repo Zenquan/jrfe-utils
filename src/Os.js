@@ -1,9 +1,7 @@
 /**
- *  @author Zenquan
   * @description 作用：一些关于系统的处理
   * @field 2021/01/15
 **/
-import mime from 'mime-types';
 
 class Os {
     /**
@@ -53,7 +51,8 @@ class Os {
     }
     /**
       * @description 作用：根据不同机型进行软件更新跳转
-      * @return {string} 
+      * @param uaStr {string} user agent
+      * @return {boolean} 
       *
       * @example
       * ```js 
@@ -65,7 +64,7 @@ class Os {
       * ```
     **/
     softwareUpdate (uaStr) {
-        let ua = navigator 
+        let ua = window.hasOwnProperty('navigator')
             ? navigator.userAgent.toLowerCase()
             : uaStr;
         const samsung = this.isSamsung(ua),
@@ -80,49 +79,6 @@ class Os {
             window.location.href = 'https://frontend-app.thejoyrun.com/release/joyrun.apk';
             return true;
         }
-    }
-    /**
-      * @description 作用：判断是否支持webp格式
-      * @return {type}
-    **/
-    isSupportWebp() {
-        const supportWebp = !![].map &&
-        document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') == 0;
-    
-        return supportWebp;
-    }
-    /**
-      * @description 作用：将又拍云图片改成webp格式
-      * @param url {type} 图片又拍云地址
-      * @param config {type} 配置 详情见 https://help.upyun.com/knowledge-base/image/
-      * @return {string} 
-      *
-      * @example
-      * ```js
-      * getWebpImage(url, {
-      *   fw: 600
-      * }) 
-      * ```
-    **/
-    getWebpImage (url, config) {
-        let mimeType = mime.lookup(url);
-        url += '!';
-    
-        if (this.isSupportWebp()) {
-    
-            if (mimeType === 'image/jpeg') {
-                url += '/format/webp';
-    
-            } else {
-                url += '/format/webp/lossless/true';
-            }
-        }
-    
-        for (let [key, value] of Object.entries(config)) {
-            url += `/${key}/${value}`;
-        }
-    
-        return url;
     }
 }
 

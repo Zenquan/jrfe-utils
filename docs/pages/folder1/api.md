@@ -7,6 +7,10 @@
 <dd></dd>
 <dt><a href="#ImageService">ImageService</a></dt>
 <dd></dd>
+<dt><a href="#Mime">Mime</a></dt>
+<dd></dd>
+<dt><a href="#Os">Os</a></dt>
+<dd></dd>
 <dt><a href="#TimeFn">TimeFn</a></dt>
 <dd></dd>
 </dl>
@@ -16,7 +20,6 @@
 ## ArrayFn
 **Kind**: global class  
 **Field**: 2021/01/13  
-**Author**: Zenquan  
 
 * [ArrayFn](#ArrayFn)
     * [new ArrayFn()](#new_ArrayFn_new)
@@ -155,7 +158,6 @@
 ## DanmuService
 **Kind**: global class  
 **Field**: 2021/01/13  
-**Author**: Zenquan  
 
 * [DanmuService](#DanmuService)
     * [new DanmuService(el, data, option)](#new_DanmuService_new)
@@ -224,11 +226,12 @@ mounted() {
 ## ImageService
 **Kind**: global class  
 **Field**: 2021/01/13  
-**Author**: Zenquan  
 
 * [ImageService](#ImageService)
     * [new ImageService()](#new_ImageService_new)
     * [.getRemotePic(url, imgClass, type)](#ImageService+getRemotePic) ⇒ <code>Promise</code>
+    * [.isSupportWebp()](#ImageService+isSupportWebp) ⇒ <code>boolean</code>
+    * [.getWebpImage(url, config)](#ImageService+getWebpImage) ⇒ <code>string</code>
 
 <a name="new_ImageService_new"></a>
 
@@ -261,11 +264,140 @@ const getAvatar = async () => {
   document.body.appendChild(res2)
 }
 ```
+<a name="ImageService+isSupportWebp"></a>
+
+### imageService.isSupportWebp() ⇒ <code>boolean</code>
+作用：判断是否支持webp格式
+
+**Kind**: instance method of [<code>ImageService</code>](#ImageService)  
+**Example**  
+```js
+const supportWebp = imageService.isSupportWebp(); // true or false
+```
+<a name="ImageService+getWebpImage"></a>
+
+### imageService.getWebpImage(url, config) ⇒ <code>string</code>
+作用：将又拍云图片改成webp格式
+
+**Kind**: instance method of [<code>ImageService</code>](#ImageService)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | 图片又拍云地址 |
+| config | <code>object</code> | 配置 详情见 https://help.upyun.com/knowledge-base/image/ |
+
+**Example**  
+```js
+getWebpImage(url, {
+  fw: 600
+}) 
+```
+<a name="Mime"></a>
+
+## Mime
+**Kind**: global class  
+**Field**: 2021/01/16  
+
+* [Mime](#Mime)
+    * [new Mime()](#new_Mime_new)
+    * [.lookup(url)](#Mime+lookup)
+
+<a name="new_Mime_new"></a>
+
+### new Mime()
+作用：媒体类型的处理
+
+<a name="Mime+lookup"></a>
+
+### mime.lookup(url)
+作用：媒体类型的判断
+
+**Kind**: instance method of [<code>Mime</code>](#Mime)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | 图片的链接 |
+
+**Example**  
+```js
+const shareUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg'
+const mimeInstance = new Mime();
+mimeInstance.lookup(shareUrl) // 'image/jpg'
+```
+<a name="Os"></a>
+
+## Os
+**Kind**: global class  
+**Field**: 2021/01/15  
+
+* [Os](#Os)
+    * [new Os()](#new_Os_new)
+    * [.checkAppV1AndV2(v1, v2)](#Os+checkAppV1AndV2) ⇒ <code>number</code>
+    * [.checkAppVersionIsOK(basic, target)](#Os+checkAppVersionIsOK) ⇒ <code>boolean</code>
+    * [.softwareUpdate(uaStr)](#Os+softwareUpdate) ⇒ <code>boolean</code>
+
+<a name="new_Os_new"></a>
+
+### new Os()
+作用：一些关于系统的处理
+
+<a name="Os+checkAppV1AndV2"></a>
+
+### os.checkAppV1AndV2(v1, v2) ⇒ <code>number</code>
+作用：版本大小的判断
+
+**Kind**: instance method of [<code>Os</code>](#Os)  
+**Returns**: <code>number</code> - -1 v1小于v2 | 1 v1大于v2 | 0 v1等于v2  
+
+| Param | Type |
+| --- | --- |
+| v1 | <code>number</code> | 
+| v2 | <code>number</code> | 
+
+**Example**  
+```js
+checkAppV1AndV2('5.14.3', '5.15.0')
+```
+<a name="Os+checkAppVersionIsOK"></a>
+
+### os.checkAppVersionIsOK(basic, target) ⇒ <code>boolean</code>
+作用：是否大于目标版本
+
+**Kind**: instance method of [<code>Os</code>](#Os)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| basic | <code>string</code> | 目标版本 |
+| target | <code>string</code> | 拿来比较的版本 |
+
+**Example**  
+```js
+checkAppVersionIsOK('5.14.3', '5.15.0') 
+```
+<a name="Os+softwareUpdate"></a>
+
+### os.softwareUpdate(uaStr) ⇒ <code>boolean</code>
+作用：根据不同机型进行软件更新跳转
+
+**Kind**: instance method of [<code>Os</code>](#Os)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| uaStr | <code>string</code> | user agent |
+
+**Example**  
+```js 
+if (softwareUpdate()) {
+ softwareUpdate()
+} else {
+ Toast('当前手机不支持，请至应用市场更新');
+}
+```
 <a name="TimeFn"></a>
 
 ## TimeFn
 **Kind**: global class  
-**Author**: Zenquan  
+**Field**: 2021/01/15  
 
 * [TimeFn](#TimeFn)
     * [new TimeFn()](#new_TimeFn_new)
@@ -287,3 +419,8 @@ const getAvatar = async () => {
 | --- | --- | --- |
 | date | <code>string</code> | 1990/01/01 or 1990-01-01 |
 
+**Example**  
+```js
+const timeFnInstance = new TimeFn(); 
+timeFnInstance.getAge('1991-01-01') // 30
+```

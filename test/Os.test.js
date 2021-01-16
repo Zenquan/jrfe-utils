@@ -3,7 +3,7 @@ const expect = require('expect.js');
 // js 测试源文件
 const Os = require('../src/Os.js');
 
-describe('os的单元测试', function () {
+describe('Os的单元测试', function () {
   this.timeout(1000);
   const osInstance = new Os.default();
 
