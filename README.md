@@ -83,4 +83,4 @@ import { xxx } from '@jomsou/utils';
 ```
 
 ## 更新日志
-[CHANGELOG.md](./CHANGELOG.md)
+[CHANGELOG.md](./docs/pages/folder1/CHANGELOG.md)
