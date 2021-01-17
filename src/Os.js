@@ -43,15 +43,36 @@ class Os {
     checkAppVersionIsOK (basic, target) {
         return !(this.checkAppV1AndV2(basic, target) > 0);
     }
+    /**
+      * @description 作用：判断是否是三星手机
+      * @param sUserAgent {string} 
+      * @return {boolean} user agent
+      *
+      * @example
+      * ```js
+      * isSamsung(sUserAgent)
+      * ```
+    **/
     isSamsung(sUserAgent) {
         return sUserAgent.match(/sm-/i) == 'sm-';
     }
+    /**
+      * @description 作用：判断是否是苹果手机
+      * @param sUserAgent {string} 
+      * @return {boolean} user agent
+      *
+      * @example
+      * ```js
+      * isIPhone(sUserAgent)
+      * ```
+    **/
     isIPhone(sUserAgent) {
         return sUserAgent.match(/iphone/i) == 'iphone';
     }
     /**
       * @description 作用：根据不同机型进行软件更新跳转
       * @param uaStr {string} user agent
+      * @param window {window} window对象
       * @return {boolean} 
       *
       * @example
@@ -63,9 +84,9 @@ class Os {
       * }
       * ```
     **/
-    softwareUpdate (uaStr) {
-        let ua = window.hasOwnProperty('navigator')
-            ? navigator.userAgent.toLowerCase()
+    softwareUpdate (uaStr, window) {
+        let ua = window.navigator
+            ? window.navigator.userAgent.toLowerCase()
             : uaStr;
         const samsung = this.isSamsung(ua),
             iPhone = this.isIPhone(ua);
