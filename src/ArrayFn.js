@@ -83,17 +83,16 @@ class ArrayFn {
    * @return {Array}
    */
     intersect(a, b) {
-        var _this = this;
         a = this.unique(a);
-        return this.map(a, function (o) {
-            return _this.contains(b, o) ? o : null;
+        return a.map(function (o) {
+            return b.includes(o) ? o : null;
         });
     }
 
     /**
-   * @description 作用：删除其中一个元素
+   * @description 作用：删除其元素的第一个
    * @param  arr {Array} 数组
-   * @param  ele {number} 删除的元素索引
+   * @param  ele {any} 删除的元素
    * @return {Array}
    */
     remove(arr, ele) {
@@ -148,9 +147,9 @@ class ArrayFn {
         });
     }
     /**
-   * @description 作用：求数组平均值，仅适合数字数组, 否则返回NaN
+   * @description 作用：求数组和平均值，仅适合数字数组, 否则返回NaN
    * @param  ary {Array} 数组
-   * @return {number} 
+   * @return {Array} 
    */
     average(arr) {
         return this.sum(arr) / arr.length;

@@ -101,6 +101,41 @@ class Os {
             return true;
         }
     }
+    /**
+      * @description 作用：获取当前链接的域名
+      * @param url {string} 链接
+      * @return {string}
+      *
+      * @example
+      * ```js
+      * const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
+      * getUrlHost(imgUrl) // https://joyrun-activity-upyun.thejoyrun.com/
+      * ```
+    **/
+    getUrlHost (url) {
+        const regx = /^http(s)?:\/\/(.*?)\//,
+            urlHost = url.match(regx)[0];
+        return urlHost;
+    }
+    /**
+      * @description 作用：判断当前资源是否跨域
+      * @param url {string} 资源的链接
+      * @param baseUrl {string} 带本页面域名的链接
+      * @return {boolean}
+      *
+      * @example
+      * ```js
+      * const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
+      const baseUrl = 'https://joyrun-activity-upyun.thejoyrun.com/1111';
+      * isCrossDomain(imgUrl, baseUrl) 
+      * ```
+    **/
+    isCrossDomain (url, baseUrl) {
+        const urlHost = this.getUrlHost(url),
+            baseUrlHost = this.getUrlHost(baseUrl);
+      
+        return urlHost === baseUrlHost;
+    }
 }
 
 export default Os;

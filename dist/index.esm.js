@@ -675,17 +675,15 @@ var ArrayFn = /*#__PURE__*/function () {
   }, {
     key: "intersect",
     value: function intersect(a, b) {
-      var _this = this;
-
       a = this.unique(a);
-      return this.map(a, function (o) {
-        return _this.contains(b, o) ? o : null;
+      return a.map(function (o) {
+        return b.includes(o) ? o : null;
       });
     }
     /**
-    * @description 作用：删除其中一个元素
+    * @description 作用：删除其元素的第一个
     * @param  arr {Array} 数组
-    * @param  ele {number} 删除的元素索引
+    * @param  ele {any} 删除的元素
     * @return {Array}
     */
 
@@ -755,9 +753,9 @@ var ArrayFn = /*#__PURE__*/function () {
       });
     }
     /**
-    * @description 作用：求数组平均值，仅适合数字数组, 否则返回NaN
+    * @description 作用：求数组和平均值，仅适合数字数组, 否则返回NaN
     * @param  ary {Array} 数组
-    * @return {number} 
+    * @return {Array} 
     */
 
   }, {
@@ -852,11 +850,33 @@ var Os = /*#__PURE__*/function () {
     value: function checkAppVersionIsOK(basic, target) {
       return !(this.checkAppV1AndV2(basic, target) > 0);
     }
+    /**
+      * @description 作用：判断是否是三星手机
+      * @param sUserAgent {string} 
+      * @return {boolean} user agent
+      *
+      * @example
+      * ```js
+      * isSamsung(sUserAgent)
+      * ```
+    **/
+
   }, {
     key: "isSamsung",
     value: function isSamsung(sUserAgent) {
       return sUserAgent.match(/sm-/i) == 'sm-';
     }
+    /**
+      * @description 作用：判断是否是苹果手机
+      * @param sUserAgent {string} 
+      * @return {boolean} user agent
+      *
+      * @example
+      * ```js
+      * isIPhone(sUserAgent)
+      * ```
+    **/
+
   }, {
     key: "isIPhone",
     value: function isIPhone(sUserAgent) {
@@ -865,6 +885,7 @@ var Os = /*#__PURE__*/function () {
     /**
       * @description 作用：根据不同机型进行软件更新跳转
       * @param uaStr {string} user agent
+      * @param window {window} window对象
       * @return {boolean} 
       *
       * @example
@@ -879,8 +900,8 @@ var Os = /*#__PURE__*/function () {
 
   }, {
     key: "softwareUpdate",
-    value: function softwareUpdate(uaStr) {
-      var ua = window.hasOwnProperty('navigator') ? navigator.userAgent.toLowerCase() : uaStr;
+    value: function softwareUpdate(uaStr, window) {
+      var ua = window.navigator ? window.navigator.userAgent.toLowerCase() : uaStr;
       var samsung = this.isSamsung(ua),
           iPhone = this.isIPhone(ua);
 
@@ -894,6 +915,46 @@ var Os = /*#__PURE__*/function () {
         window.location.href = 'https://frontend-app.thejoyrun.com/release/joyrun.apk';
         return true;
       }
+    }
+    /**
+      * @description 作用：获取当前链接的域名
+      * @param url {string} 链接
+      * @return {string}
+      *
+      * @example
+      * ```js
+      * const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
+      * getUrlHost(imgUrl) // https://joyrun-activity-upyun.thejoyrun.com/
+      * ```
+    **/
+
+  }, {
+    key: "getUrlHost",
+    value: function getUrlHost(url) {
+      var regx = /^http(s)?:\/\/(.*?)\//,
+          urlHost = url.match(regx)[0];
+      return urlHost;
+    }
+    /**
+      * @description 作用：判断当前资源是否跨域
+      * @param url {string} 资源的链接
+      * @param baseUrl {string} 带本页面域名的链接
+      * @return {boolean}
+      *
+      * @example
+      * ```js
+      * const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
+      const baseUrl = 'https://joyrun-activity-upyun.thejoyrun.com/1111';
+      * isCrossDomain(imgUrl, baseUrl) 
+      * ```
+    **/
+
+  }, {
+    key: "isCrossDomain",
+    value: function isCrossDomain(url, baseUrl) {
+      var urlHost = this.getUrlHost(url),
+          baseUrlHost = this.getUrlHost(baseUrl);
+      return urlHost === baseUrlHost;
     }
   }]);
 

@@ -45,4 +45,23 @@ describe('Os的单元测试', function () {
       expect(osInstance.softwareUpdate(ua, window)).to.equal(true);
     });
   })
+  describe('getUrlHost', () => {
+    it('https://joyrun-activity-upyun.thejoyrun.com/', () => {
+      const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg', baseUrl = 'https://joyrun-activity-upyun.thejoyrun.com/';
+      expect(osInstance.getUrlHost(imgUrl)).to.equal(baseUrl);
+    })
+  })
+  describe('isCrossDomain', () => {
+    it('true', () => {
+      const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
+      const baseUrl = 'https://joyrun-activity-upyun.thejoyrun.com/1111';
+      expect(osInstance.isCrossDomain(imgUrl, baseUrl)).to.equal(true);
+    })
+
+    it('false', () => {
+      const imgUrl = 'http://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
+      const baseUrl = 'https://joyrun-activity-upyun.thejoyrun.com/1111';
+      expect(osInstance.isCrossDomain(imgUrl, baseUrl)).to.equal(false);
+    })
+  })
 });

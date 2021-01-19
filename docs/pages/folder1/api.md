@@ -32,7 +32,7 @@
     * [.max(ary)](#ArrayFn+max) ⇒ <code>number</code>
     * [.min(ary)](#ArrayFn+min) ⇒ <code>number</code>
     * [.sum(ary)](#ArrayFn+sum) ⇒ <code>number</code>
-    * [.average(ary)](#ArrayFn+average) ⇒ <code>number</code>
+    * [.average(ary)](#ArrayFn+average) ⇒ <code>Array</code>
 
 <a name="new_ArrayFn_new"></a>
 
@@ -89,14 +89,14 @@
 <a name="ArrayFn+remove"></a>
 
 ### arrayFn.remove(arr, ele) ⇒ <code>Array</code>
-作用：删除其中一个元素
+作用：删除其元素的第一个
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | arr | <code>Array</code> | 数组 |
-| ele | <code>number</code> | 删除的元素索引 |
+| ele | <code>any</code> | 删除的元素 |
 
 <a name="ArrayFn+formArray"></a>
 
@@ -144,8 +144,8 @@
 
 <a name="ArrayFn+average"></a>
 
-### arrayFn.average(ary) ⇒ <code>number</code>
-作用：求数组平均值，仅适合数字数组, 否则返回NaN
+### arrayFn.average(ary) ⇒ <code>Array</code>
+作用：求数组和平均值，仅适合数字数组, 否则返回NaN
 
 **Kind**: instance method of [<code>ArrayFn</code>](#ArrayFn)  
 
@@ -334,7 +334,11 @@ mimeInstance.lookup(shareUrl) // 'image/jpg'
     * [new Os()](#new_Os_new)
     * [.checkAppV1AndV2(v1, v2)](#Os+checkAppV1AndV2) ⇒ <code>number</code>
     * [.checkAppVersionIsOK(basic, target)](#Os+checkAppVersionIsOK) ⇒ <code>boolean</code>
-    * [.softwareUpdate(uaStr)](#Os+softwareUpdate) ⇒ <code>boolean</code>
+    * [.isSamsung(sUserAgent)](#Os+isSamsung) ⇒ <code>boolean</code>
+    * [.isIPhone(sUserAgent)](#Os+isIPhone) ⇒ <code>boolean</code>
+    * [.softwareUpdate(uaStr, window)](#Os+softwareUpdate) ⇒ <code>boolean</code>
+    * [.getUrlHost(url)](#Os+getUrlHost) ⇒ <code>string</code>
+    * [.isCrossDomain(url, baseUrl)](#Os+isCrossDomain) ⇒ <code>boolean</code>
 
 <a name="new_Os_new"></a>
 
@@ -374,9 +378,41 @@ checkAppV1AndV2('5.14.3', '5.15.0')
 ```js
 checkAppVersionIsOK('5.14.3', '5.15.0') 
 ```
+<a name="Os+isSamsung"></a>
+
+### os.isSamsung(sUserAgent) ⇒ <code>boolean</code>
+作用：判断是否是三星手机
+
+**Kind**: instance method of [<code>Os</code>](#Os)  
+**Returns**: <code>boolean</code> - user agent  
+
+| Param | Type |
+| --- | --- |
+| sUserAgent | <code>string</code> | 
+
+**Example**  
+```js
+isSamsung(sUserAgent)
+```
+<a name="Os+isIPhone"></a>
+
+### os.isIPhone(sUserAgent) ⇒ <code>boolean</code>
+作用：判断是否是苹果手机
+
+**Kind**: instance method of [<code>Os</code>](#Os)  
+**Returns**: <code>boolean</code> - user agent  
+
+| Param | Type |
+| --- | --- |
+| sUserAgent | <code>string</code> | 
+
+**Example**  
+```js
+isIPhone(sUserAgent)
+```
 <a name="Os+softwareUpdate"></a>
 
-### os.softwareUpdate(uaStr) ⇒ <code>boolean</code>
+### os.softwareUpdate(uaStr, window) ⇒ <code>boolean</code>
 作用：根据不同机型进行软件更新跳转
 
 **Kind**: instance method of [<code>Os</code>](#Os)  
@@ -384,6 +420,7 @@ checkAppVersionIsOK('5.14.3', '5.15.0')
 | Param | Type | Description |
 | --- | --- | --- |
 | uaStr | <code>string</code> | user agent |
+| window | <code>window</code> | window对象 |
 
 **Example**  
 ```js 
@@ -392,6 +429,40 @@ if (softwareUpdate()) {
 } else {
  Toast('当前手机不支持，请至应用市场更新');
 }
+```
+<a name="Os+getUrlHost"></a>
+
+### os.getUrlHost(url) ⇒ <code>string</code>
+作用：获取当前链接的域名
+
+**Kind**: instance method of [<code>Os</code>](#Os)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | 链接 |
+
+**Example**  
+```js
+const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
+getUrlHost(imgUrl) // https://joyrun-activity-upyun.thejoyrun.com/
+```
+<a name="Os+isCrossDomain"></a>
+
+### os.isCrossDomain(url, baseUrl) ⇒ <code>boolean</code>
+作用：判断当前资源是否跨域
+
+**Kind**: instance method of [<code>Os</code>](#Os)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | 资源的链接 |
+| baseUrl | <code>string</code> | 带本页面域名的链接 |
+
+**Example**  
+```js
+const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
+      const baseUrl = 'https://joyrun-activity-upyun.thejoyrun.com/1111';
+isCrossDomain(imgUrl, baseUrl) 
 ```
 <a name="TimeFn"></a>
 
