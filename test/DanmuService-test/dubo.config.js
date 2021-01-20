@@ -47,7 +47,7 @@ const prodConfig = {
   assetsPath: STATIC_URL,                              // 打包构建后，静态资源指向的文件夹路径
   // distPublicPath: `/activity/${'shanghai-ma' || 'dubo'}/dist/`,        // webpack 构建后，web 服务器指向的静态资源的引入根路径
   distPublicPath: 'https://joyrun-web-cdn.thejoyrun.com/huodong/2020/12/vip2020/',
-  sourceMap: false,                                     // webpack 构建工具是否开启 sourceMap
+  sourceMap: false,                                     // webpack 构建工具库是否开启 sourceMap
   bundleAnalyzerReport: false,                          // 是否生成 webpack 构建包分析报告
   cdn: {                                                // 又拍云 FTP 账户信息
     service: process.env.UPYUN_WEB_SERVICE || '',

@@ -2,7 +2,7 @@
 home: true
 heroImage: /egg.png
 heroText: jrfe-utils
-tagline: 悦跑h5小分队工具
+tagline: 悦跑h5小分队工具库
 actionText: 马上进入 →
 actionLink: /pages/folder1/install.md
 features:
