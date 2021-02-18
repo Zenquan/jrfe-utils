@@ -11,6 +11,8 @@
 <dd></dd>
 <dt><a href="#Os">Os</a></dt>
 <dd></dd>
+<dt><a href="#Storage">Storage</a></dt>
+<dd></dd>
 <dt><a href="#TimeFn">TimeFn</a></dt>
 <dd></dd>
 </dl>
@@ -463,6 +465,144 @@ getUrlHost(imgUrl) // https://joyrun-activity-upyun.thejoyrun.com/
 const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
       const baseUrl = 'https://joyrun-activity-upyun.thejoyrun.com/1111';
 isCrossDomain(imgUrl, baseUrl) 
+```
+<a name="Storage"></a>
+
+## Storage
+**Kind**: global class  
+**Field**: 2021/02/08  
+
+* [Storage](#Storage)
+    * [new Storage()](#new_Storage_new)
+    * [.setLocal(key, val)](#Storage+setLocal)
+    * [.getLocal(key)](#Storage+getLocal)
+    * [.removeLocal(key)](#Storage+removeLocal)
+    * [.clearLocal()](#Storage+clearLocal)
+    * [.setSession(key, val)](#Storage+setSession)
+    * [.getSession(key)](#Storage+getSession)
+    * [.removeSession(key)](#Storage+removeSession)
+    * [.clearSession()](#Storage+clearSession)
+
+<a name="new_Storage_new"></a>
+
+### new Storage()
+作用：本地缓存（localStorage和sessionStorage）
+
+<a name="Storage+setLocal"></a>
+
+### storage.setLocal(key, val)
+作用: 设置localStorage
+
+**Kind**: instance method of [<code>Storage</code>](#Storage)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>any</code> | 当key为对象时，不需要传val值 |
+| val | <code>any</code> | 非必须，缓存的值 |
+
+**Example**  
+```js 
+let storage = new Storage()
+storage.setLocal({a: '111', b: '3333'})
+storage.setLocal(1, 2)
+```
+<a name="Storage+getLocal"></a>
+
+### storage.getLocal(key)
+作用：获取某个key的localStorage
+
+**Kind**: instance method of [<code>Storage</code>](#Storage)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>any</code> | 键 |
+
+**Example**  
+```js 
+storage.getLocal(1) // 2
+```
+<a name="Storage+removeLocal"></a>
+
+### storage.removeLocal(key)
+作用：删除某个key的localStorage
+
+**Kind**: instance method of [<code>Storage</code>](#Storage)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>any</code> | 键 |
+
+**Example**  
+```js 
+storage.removeLocal(2) 
+```
+<a name="Storage+clearLocal"></a>
+
+### storage.clearLocal()
+作用：移除所有localStorage
+
+**Kind**: instance method of [<code>Storage</code>](#Storage)  
+**Example**  
+```js 
+storage.clearLocal() 
+```
+<a name="Storage+setSession"></a>
+
+### storage.setSession(key, val)
+作用: sessionStorage
+
+**Kind**: instance method of [<code>Storage</code>](#Storage)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>any</code> | 当key为对象时，不需要传val值 |
+| val | <code>any</code> | 非必须，缓存的值 |
+
+**Example**  
+```js 
+let storage = new Storage()
+storage.setSession({a: '111', b: '3333'})
+storage.setSession(1, 2)
+```
+<a name="Storage+getSession"></a>
+
+### storage.getSession(key)
+作用：获取某个key的sessionStorage
+
+**Kind**: instance method of [<code>Storage</code>](#Storage)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>any</code> | 键 |
+
+**Example**  
+```js 
+storage.getSession(1) // 2
+```
+<a name="Storage+removeSession"></a>
+
+### storage.removeSession(key)
+作用：删除某个key的sessionStorage
+
+**Kind**: instance method of [<code>Storage</code>](#Storage)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>any</code> | 键 |
+
+**Example**  
+```js 
+storage.removeSession(2) 
+```
+<a name="Storage+clearSession"></a>
+
+### storage.clearSession()
+作用：移除所有sessionStorage
+
+**Kind**: instance method of [<code>Storage</code>](#Storage)  
+**Example**  
+```js 
+storage.clearSession() 
 ```
 <a name="TimeFn"></a>
 

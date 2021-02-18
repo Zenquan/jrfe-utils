@@ -4,6 +4,7 @@ import ArrayFn from './ArrayFn';
 import TimeFn from './TimeFn';
 import Os from './Os';
 import Mime from './Mime';
+import Storage from './Storage';
 
 export {
     ImageService,
@@ -11,7 +12,8 @@ export {
     ArrayFn,
     TimeFn,
     Os,
-    Mime
+    Mime,
+    Storage
 };
 
 export default {
@@ -20,5 +22,6 @@ export default {
     ArrayFn,
     TimeFn,
     Os,
-    Mime
+    Mime,
+    Storage
 };

@@ -1,6 +1,6 @@
 {
   "name": "@jomsou/utils",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "悦跑h5小分队工具库",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.esm.js",
