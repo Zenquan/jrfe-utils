@@ -3,12 +3,12 @@
   * @field 2021/02/08
 **/
 class Storage {
-  constructor() {
-    this.ls = window.localStorage;
-    this.ss = window.sessionStorage;
-  }
+    constructor(window) {
+        this.ls = window.localStorage;
+        this.ss = window.sessionStorage;
+    }
 
-  /**
+    /**
     * @description 作用: 设置localStorage
     * @param key {any} 当key为对象时，不需要传val值
     * @param val {any} 非必须，缓存的值
@@ -20,19 +20,19 @@ class Storage {
     * storage.setLocal(1, 2)
     * ```
   **/
-  setLocal(key, val) {
-    var setting = arguments[0];
-    if (Object.prototype.toString.call(setting).slice(8, -1) === 'Object') {
-      for (var i in setting) {
-        this.ls.setItem(i, JSON.stringify(setting[i]));
-      }
-    } else {
-      this.ls.setItem(key, JSON.stringify(val));
+    setLocal(key, val) {
+        var setting = arguments[0];
+        if (Object.prototype.toString.call(setting).slice(8, -1) === 'Object') {
+            for (var i in setting) {
+                this.ls.setItem(i, JSON.stringify(setting[i]));
+            }
+        } else {
+            this.ls.setItem(key, JSON.stringify(val));
+        }
+
     }
 
-  }
-
-  /**
+    /**
     * @description 作用：获取某个key的localStorage
     * @param key {any} 键
     *
@@ -41,13 +41,13 @@ class Storage {
     * storage.getLocal(1) // 2
     * ```
   **/
-  getLocal(key) {
-    if (key) return JSON.parse(this.ls.getItem(key));
-    return null;
+    getLocal(key) {
+        if (key) return JSON.parse(this.ls.getItem(key));
+        return null;
 
-  }
+    }
 
-  /**
+    /**
     * @description 作用：删除某个key的localStorage
     * @param key {any} 键
     *
@@ -56,11 +56,11 @@ class Storage {
     * storage.removeLocal(2) 
     * ```
   **/
-  removeLocal(key) {
-    this.ls.removeItem(key);
-  }
+    removeLocal(key) {
+        this.ls.removeItem(key);
+    }
 
-  /**
+    /**
     * @description 作用：移除所有localStorage
     *
     * @example
@@ -68,11 +68,11 @@ class Storage {
     * storage.clearLocal() 
     * ```
   **/
-  clearLocal() {
-    this.ls.clear();
-  }
+    clearLocal() {
+        this.ls.clear();
+    }
 
-  /**
+    /**
     * @description 作用: sessionStorage
     * @param key {any} 当key为对象时，不需要传val值
     * @param val {any} 非必须，缓存的值
@@ -84,19 +84,19 @@ class Storage {
     * storage.setSession(1, 2)
     * ```
   **/
-  setSession(key, val) {
-    var setting = arguments[0];
-    if (Object.prototype.toString.call(setting).slice(8, -1) === 'Object') {
-      for (var i in setting) {
-        this.ss.setItem(i, JSON.stringify(setting[i]))
-      }
-    } else {
-      this.ss.setItem(key, JSON.stringify(val))
+    setSession(key, val) {
+        var setting = arguments[0];
+        if (Object.prototype.toString.call(setting).slice(8, -1) === 'Object') {
+            for (var i in setting) {
+                this.ss.setItem(i, JSON.stringify(setting[i]));
+            }
+        } else {
+            this.ss.setItem(key, JSON.stringify(val));
+        }
+
     }
 
-  }
-
-  /**
+    /**
     * @description 作用：获取某个key的sessionStorage
     * @param key {any} 键
     *
@@ -105,13 +105,13 @@ class Storage {
     * storage.getSession(1) // 2
     * ```
   **/
-  getSession(key) {
-    if (key) return JSON.parse(this.ss.getItem(key))
-    return null;
+    getSession(key) {
+        if (key) return JSON.parse(this.ss.getItem(key));
+        return null;
 
-  }
+    }
 
-  /**
+    /**
     * @description 作用：删除某个key的sessionStorage
     * @param key {any} 键
     *
@@ -120,10 +120,10 @@ class Storage {
     * storage.removeSession(2) 
     * ```
   **/  
-  removeSession(key) {
-    this.ss.removeItem(key);
-  }
-  /**
+    removeSession(key) {
+        this.ss.removeItem(key);
+    }
+    /**
     * @description 作用：移除所有sessionStorage
     *
     * @example
@@ -131,9 +131,9 @@ class Storage {
     * storage.clearSession() 
     * ```
   **/
-  clearSession() {
-    this.ss.clear();
-  }
+    clearSession() {
+        this.ss.clear();
+    }
 
 }
 

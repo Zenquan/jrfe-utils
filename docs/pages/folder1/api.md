@@ -11,6 +11,8 @@
 <dd></dd>
 <dt><a href="#Os">Os</a></dt>
 <dd></dd>
+<dt><a href="#Service">Service</a></dt>
+<dd></dd>
 <dt><a href="#Storage">Storage</a></dt>
 <dd></dd>
 <dt><a href="#TimeFn">TimeFn</a></dt>
@@ -465,6 +467,39 @@ getUrlHost(imgUrl) // https://joyrun-activity-upyun.thejoyrun.com/
 const imgUrl = 'https://joyrun-activity-upyun.thejoyrun.com/huodong/2020/09/run-challenge/assets/img/share.jpg';
       const baseUrl = 'https://joyrun-activity-upyun.thejoyrun.com/1111';
 isCrossDomain(imgUrl, baseUrl) 
+```
+<a name="Service"></a>
+
+## Service
+**Kind**: global class  
+**Field**: 2021/01/15  
+
+* [Service](#Service)
+    * [new Service()](#new_Service_new)
+    * [.getUid(ypcookie)](#Service+getUid) ⇒ <code>string</code>
+
+<a name="new_Service_new"></a>
+
+### new Service()
+作用：一些关于业务的处理
+
+<a name="Service+getUid"></a>
+
+### service.getUid(ypcookie) ⇒ <code>string</code>
+作用：获取用户uid
+
+**Kind**: instance method of [<code>Service</code>](#Service)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ypcookie | <code>string</code> | 用户的ypcookie |
+
+**Example**  
+```js 
+import Cookies from 'js-cookie'
+or <script src="//joyrun-activity-upyun.thejoyrun.com/common/js/js.cookie.js"></script>
+
+const uid = getUid(Cookies.get('ypcookie'))
 ```
 <a name="Storage"></a>
 

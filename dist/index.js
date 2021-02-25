@@ -977,16 +977,16 @@ var Storage = /*#__PURE__*/function () {
     this.ss = window.sessionStorage;
   }
   /**
-    * @description 作用: 设置localStorage
-    * @param key {any} 当key为对象时，不需要传val值
-    * @param val {any} 非必须，缓存的值
-    *
-    * @example
-    * ```js 
-    * let storage = new Storage()
-    * storage.setLocal({a: '111', b: '3333'})
-    * storage.setLocal(1, 2)
-    * ```
+  * @description 作用: 设置localStorage
+  * @param key {any} 当key为对象时，不需要传val值
+  * @param val {any} 非必须，缓存的值
+  *
+  * @example
+  * ```js 
+  * let storage = new Storage()
+  * storage.setLocal({a: '111', b: '3333'})
+  * storage.setLocal(1, 2)
+  * ```
   **/
 
 
@@ -1004,13 +1004,13 @@ var Storage = /*#__PURE__*/function () {
       }
     }
     /**
-      * @description 作用：获取某个key的localStorage
-      * @param key {any} 键
-      *
-      * @example
-      * ```js 
-      * storage.getLocal(1) // 2
-      * ```
+    * @description 作用：获取某个key的localStorage
+    * @param key {any} 键
+    *
+    * @example
+    * ```js 
+    * storage.getLocal(1) // 2
+    * ```
     **/
 
   }, {
@@ -1020,13 +1020,13 @@ var Storage = /*#__PURE__*/function () {
       return null;
     }
     /**
-      * @description 作用：删除某个key的localStorage
-      * @param key {any} 键
-      *
-      * @example
-      * ```js 
-      * storage.removeLocal(2) 
-      * ```
+    * @description 作用：删除某个key的localStorage
+    * @param key {any} 键
+    *
+    * @example
+    * ```js 
+    * storage.removeLocal(2) 
+    * ```
     **/
 
   }, {
@@ -1035,12 +1035,12 @@ var Storage = /*#__PURE__*/function () {
       this.ls.removeItem(key);
     }
     /**
-      * @description 作用：移除所有localStorage
-      *
-      * @example
-      * ```js 
-      * storage.clearLocal() 
-      * ```
+    * @description 作用：移除所有localStorage
+    *
+    * @example
+    * ```js 
+    * storage.clearLocal() 
+    * ```
     **/
 
   }, {
@@ -1049,16 +1049,16 @@ var Storage = /*#__PURE__*/function () {
       this.ls.clear();
     }
     /**
-      * @description 作用: sessionStorage
-      * @param key {any} 当key为对象时，不需要传val值
-      * @param val {any} 非必须，缓存的值
-      *
-      * @example
-      * ```js 
-      * let storage = new Storage()
-      * storage.setSession({a: '111', b: '3333'})
-      * storage.setSession(1, 2)
-      * ```
+    * @description 作用: sessionStorage
+    * @param key {any} 当key为对象时，不需要传val值
+    * @param val {any} 非必须，缓存的值
+    *
+    * @example
+    * ```js 
+    * let storage = new Storage()
+    * storage.setSession({a: '111', b: '3333'})
+    * storage.setSession(1, 2)
+    * ```
     **/
 
   }, {
@@ -1075,13 +1075,13 @@ var Storage = /*#__PURE__*/function () {
       }
     }
     /**
-      * @description 作用：获取某个key的sessionStorage
-      * @param key {any} 键
-      *
-      * @example
-      * ```js 
-      * storage.getSession(1) // 2
-      * ```
+    * @description 作用：获取某个key的sessionStorage
+    * @param key {any} 键
+    *
+    * @example
+    * ```js 
+    * storage.getSession(1) // 2
+    * ```
     **/
 
   }, {
@@ -1091,13 +1091,13 @@ var Storage = /*#__PURE__*/function () {
       return null;
     }
     /**
-      * @description 作用：删除某个key的sessionStorage
-      * @param key {any} 键
-      *
-      * @example
-      * ```js 
-      * storage.removeSession(2) 
-      * ```
+    * @description 作用：删除某个key的sessionStorage
+    * @param key {any} 键
+    *
+    * @example
+    * ```js 
+    * storage.removeSession(2) 
+    * ```
     **/
 
   }, {
@@ -1106,12 +1106,12 @@ var Storage = /*#__PURE__*/function () {
       this.ss.removeItem(key);
     }
     /**
-      * @description 作用：移除所有sessionStorage
-      *
-      * @example
-      * ```js 
-      * storage.clearSession() 
-      * ```
+    * @description 作用：移除所有sessionStorage
+    *
+    * @example
+    * ```js 
+    * storage.clearSession() 
+    * ```
     **/
 
   }, {
