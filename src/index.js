@@ -5,6 +5,7 @@ import TimeFn from './TimeFn';
 import Os from './Os';
 import Mime from './Mime';
 import Storage from './Storage';
+import Service from './Service'
 
 export {
     ImageService,
@@ -13,7 +14,8 @@ export {
     TimeFn,
     Os,
     Mime,
-    Storage
+    Storage,
+    Service
 };
 
 export default {
@@ -23,5 +25,6 @@ export default {
     TimeFn,
     Os,
     Mime,
-    Storage
+    Storage,
+    Service
 };

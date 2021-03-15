@@ -966,7 +966,7 @@ var Os = /*#__PURE__*/function () {
   * @field 2021/02/08
 **/
 var Storage = /*#__PURE__*/function () {
-  function Storage() {
+  function Storage(window) {
     _classCallCheck(this, Storage);
 
     this.ls = window.localStorage;
@@ -1120,6 +1120,43 @@ var Storage = /*#__PURE__*/function () {
   return Storage;
 }();
 
+/**
+  * @description 作用：一些关于业务的处理
+  * @field 2021/01/15
+**/
+var Service = /*#__PURE__*/function () {
+  function Service() {
+    _classCallCheck(this, Service);
+  }
+
+  _createClass(Service, [{
+    key: "getUid",
+
+    /**
+    * @description 作用：获取用户uid
+    * @param ypcookie {string} 用户的ypcookie
+    * @return {string}
+    *
+    * @example
+    * ```js 
+    * import Cookies from 'js-cookie'
+    * or <script src="//joyrun-activity-upyun.thejoyrun.com/common/js/js.cookie.js"></script>
+    * 
+    * const uid = getUid(Cookies.get('ypcookie'))
+    * ```
+    **/
+    value: function getUid(ypcookie) {
+      if (ypcookie) {
+        return decodeURIComponent(ypcookie).match(/uid=\d+/)[0].split('=')[1];
+      }
+
+      throw new TypeError('请传入ypcookie');
+    }
+  }]);
+
+  return Service;
+}();
+
 var index = {
   ImageService: ImageService,
   DanmuService: DanmuService,
@@ -1127,8 +1164,9 @@ var index = {
   TimeFn: TimeFn,
   Os: Os,
   Mime: Mime,
-  Storage: Storage
+  Storage: Storage,
+  Service: Service
 };
 
 export default index;
-export { ImageService, DanmuService, ArrayFn, TimeFn, Os, Mime, Storage };
+export { ImageService, DanmuService, ArrayFn, TimeFn, Os, Mime, Storage, Service };
