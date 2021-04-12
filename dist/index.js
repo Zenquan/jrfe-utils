@@ -1161,6 +1161,36 @@ var Service = /*#__PURE__*/function () {
   return Service;
 }();
 
+/**
+ * @description 作用：注入库的链接
+ * @param url {string} 库的链接
+ * @param fn {function} 回调函数
+ *
+ * @example
+ * ```js
+ * utils.injectScript(
+ *    "https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vConsole/3.4.0/vconsole.min.js",
+ *   () => new VConsole()
+ * )
+ * ```
+ * 
+ **/
+var injectScript = function injectScript(url, fn) {
+  var script = document.createElement('script');
+  script.src = url;
+  script.async = true;
+
+  script.onload = function () {
+    fn && fn();
+  };
+
+  document.body.appendChild(script);
+};
+
+var utils = {
+  injectScript: injectScript
+};
+
 var index = {
   ImageService: ImageService,
   DanmuService: DanmuService,
@@ -1169,7 +1199,8 @@ var index = {
   Os: Os,
   Mime: Mime,
   Storage: Storage,
-  Service: Service
+  Service: Service,
+  utils: utils
 };
 
 exports.ImageService = ImageService;
@@ -1180,4 +1211,5 @@ exports.Os = Os;
 exports.Mime = Mime;
 exports.Storage = Storage;
 exports.Service = Service;
+exports.utils = utils;
 exports.default = index;

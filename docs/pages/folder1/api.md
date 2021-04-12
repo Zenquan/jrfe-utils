@@ -19,6 +19,14 @@
 <dd></dd>
 </dl>
 
+## Functions
+
+<dl>
+<dt><a href="#injectScript">injectScript(url, fn)</a></dt>
+<dd><p>作用：注入库的链接</p>
+</dd>
+</dl>
+
 <a name="ArrayFn"></a>
 
 ## ArrayFn
@@ -669,4 +677,23 @@ storage.clearSession()
 ```js
 const timeFnInstance = new TimeFn(); 
 timeFnInstance.getAge('1991-01-01') // 30
+```
+<a name="injectScript"></a>
+
+## injectScript(url, fn)
+作用：注入库的链接
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | 库的链接 |
+| fn | <code>function</code> | 回调函数 |
+
+**Example**  
+```js
+utils.injectScript(
+   "https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vConsole/3.4.0/vconsole.min.js",
+  () => new VConsole()
+)
 ```

@@ -1,6 +1,6 @@
 {
   "name": "@jomsou/utils",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "悦跑h5小分队工具库",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.esm.js",
@@ -16,6 +16,8 @@
     "build:esm": "rollup -c config/rollup.config.esm.js",
     "build:aio": "rollup -c config/rollup.config.aio.js",
     "build:aio.min": "cross-env NODE_ENV=production npm run build:aio",
+    "build:lib": "rollup -c config/rollup.config.lib.js",
+    "build:lib.min": "cross-env NODE_ENV=production npm run build:lib",
     "build": "npm run clean && npm run build:self && npm run build:esm && npm run build:aio && npm run build:aio.min",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "docs:jsdoc2md": "rimraf docs/pages/folder1/api.md && npx jsdoc2md src/* >> docs/pages/folder1/api.md",
